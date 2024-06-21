@@ -464,6 +464,35 @@
     style="margin-top: 16px;">
     <div class="comment-card-title">评论</div>
     
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'tRyzSH5lHX0I5brThoqaOrxx-gzGzoHsz',
+        appKey: 'ZQpppITbmXCyEPCotughfXEJ',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'true',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'true',
+        requiredFields: ["nick","mail"],
+      });
+    };
+  </script>
+
   </div>
 
 <div 
