@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="https://img.picui.cn/free/2024/07/08/668b4adbd3e1b.jpg">
+  <title>python爬虫系列:Xpath爬取图片</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="python爬虫系列:Xpath爬取图片">
+    
+    
+      <meta 
+        property="og:url" 
+        content="https://ximenxiaoxue.github.io/2024/06/20/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-Xpath%E7%88%AC%E5%8F%96%E5%9B%BE%E7%89%87/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://img.picui.cn/free/2024/07/08/668b4adbd3e1b.jpg">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2024-06-20">
+      <meta 
+        property="og:article:modified_time" 
+        content="2024-07-07">
+      <meta 
+        property="og:article:author" 
+        content="西门啸雪">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="爬虫">
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="https://img.picui.cn/free/2024/07/08/668b4adbd3e1b.jpg" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">个人博客</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://img.picui.cn/free/2024/07/08/668b4adbd3e1b.jpg" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">西门啸雪</p>
+<p class="author-description">我既从迷雾中走出，便留一地脚印。这是我的爱发电主页，非常感谢支持：https://afdian.net/a/AuroraBreeze</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>5</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>2</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>4</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://www.bilibili.com/">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-Xpath%E7%88%AC%E5%8F%96%E5%9B%BE%E7%89%87"><span class="toc-text">python爬虫系列:Xpath爬取图片</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BB%A3%E7%A0%81"><span class="toc-text">python代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%B8%80"><span class="toc-text">代码解析之一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BA%8C"><span class="toc-text">代码解析之二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%B8%89"><span class="toc-text">代码解析之三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E5%9B%9B"><span class="toc-text">代码解析之四</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BA%94"><span class="toc-text">代码解析之五</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/hexo/">
+        <div class="categories-list-item">
+          hexo
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/python/">
+        <div class="categories-list-item">
+          python
+          <span class="categories-list-item-badge">3</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E7%88%AC%E8%99%AB/" 
+        title="爬虫">
+        <div class="tags-list-item">爬虫</div>
+      </a>
+    
+      <a 
+        href="/tags/pywifi/" 
+        title="pywifi">
+        <div class="tags-list-item">pywifi</div>
+      </a>
+    
+      <a 
+        href="/tags/kaze/" 
+        title="kaze">
+        <div class="tags-list-item">kaze</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      python爬虫系列:Xpath爬取图片
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2024-06-20T08:23:49.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2024-06-20</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/python/" 
+          class="post-meta-link">
+          python
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>3.9k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/%E7%88%AC%E8%99%AB/" 
+            class="post-meta-link">
+            爬虫
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h1 id="python爬虫系列-Xpath爬取图片"><a href="#python爬虫系列-Xpath爬取图片" class="headerlink" title="python爬虫系列:Xpath爬取图片"></a>python爬虫系列:Xpath爬取图片</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章很久之前就写完了，可是听说这篇文章有许多的问题，但是我在CSDN上并不敢改这篇文章，因为很可能改了就再也发不出来了，所以趁着我搭建了一个博客，把这篇文章重新写一遍，顺便把之前写的烂代码改一下，希望这篇文章能帮到大家。</p>
+<p>其次，希望大家学习一下基本的html语法。</p>
+<h2 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h2><pre class="highlight"><code class="hljs python"><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">from</span> lxml <span class="hljs-keyword">import</span> etree<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> os<br><br>headers = &#123;<br>    <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42&#x27;</span><br>&#125;<br><br>url_list = []<br>page = <span class="hljs-number">0</span><br><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">&quot;./pic/&quot;</span>): <br>    os.makedirs(<span class="hljs-string">&quot;./pic/&quot;</span>)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">pic_path</span>():<br>    <span class="hljs-keyword">global</span> page,url_list<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br><br>        page = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;输入下载页数：&quot;</span>)<br>        <span class="hljs-keyword">try</span>:<br>            page = <span class="hljs-built_in">int</span>(page)<br>        <span class="hljs-keyword">except</span> ValueError:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入页数有误！&quot;</span>)<br>            <span class="hljs-keyword">continue</span><br><br>        <span class="hljs-keyword">if</span> page == <span class="hljs-number">1</span>:<br>            url = <span class="hljs-string">&quot;https://pic.netbian.com/4kdongman/index.html&quot;</span><br>            <span class="hljs-keyword">return</span> url<br><br><br>        <span class="hljs-keyword">elif</span> page &gt; <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, page + <span class="hljs-number">1</span>):<br>                url_list.append(<span class="hljs-string">&quot;https://pic.netbian.com/4kdongman/index.html&quot;</span>)<br>                url_list.append(<span class="hljs-string">&quot;https://pic.netbian.com/4kdongman/index_&#123;&#125;.html&quot;</span>.<span class="hljs-built_in">format</span>(i))<br><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入页数有误！&quot;</span>)<br>            <span class="hljs-keyword">continue</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">download</span>(<span class="hljs-params">url</span>):<br><br>    <span class="hljs-keyword">if</span> url <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        response = requests.get(url, headers=headers).text.encode(<span class="hljs-string">&#x27;iso-8859-1&#x27;</span>)<br>        Batch_processing(response)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> url_list:<br>            response = requests.get(url, headers=headers).text.encode(<span class="hljs-string">&#x27;iso-8859-1&#x27;</span>)<br>            Batch_processing(response)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Batch_processing</span>(<span class="hljs-params">response</span>):<br>    tree = etree.HTML(response)<br>    pic_list = tree.xpath(<span class="hljs-string">&#x27;//*[@id=&quot;main&quot;]/div[3]/ul/li&#x27;</span>)<br><br>    <span class="hljs-keyword">for</span> pic_list_item <span class="hljs-keyword">in</span> pic_list:<br>        <span class="hljs-comment"># print(pic_list_item.xpath(&#x27;a/img/@src&#x27;)[0])</span><br>        <span class="hljs-comment"># print(pic_list_item.xpath(&#x27;a/b/text()&#x27;)[0])</span><br>        html_url = <span class="hljs-string">&quot;https://pic.netbian.com&quot;</span> + pic_list_item.xpath(<span class="hljs-string">&#x27;a/img/@src&#x27;</span>)[<span class="hljs-number">0</span>]<br>        name_pat = pic_list_item.xpath(<span class="hljs-string">&#x27;a/b/text()&#x27;</span>)[<span class="hljs-number">0</span>]<br><br>        <span class="hljs-built_in">print</span>(html_url)<br>        <span class="hljs-built_in">print</span>(name_pat)<br><br>        <span class="hljs-keyword">try</span>:<br>            name = <span class="hljs-built_in">str</span>(name_pat.replace(<span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;_&quot;</span>) + <span class="hljs-string">&quot;.jpg&quot;</span>)<br>            name = <span class="hljs-built_in">str</span>(name.replace(<span class="hljs-string">&quot;*&quot;</span>, <span class="hljs-string">&quot;&quot;</span>))  <span class="hljs-comment"># 处理文件名中含有*的情况，有些文件名中含有*会导致文件无法保存</span><br>            pic_get = requests.get(html_url, headers=headers).content<br><br>            pic_save_path = <span class="hljs-string">&quot;./pic/&quot;</span> + name<br><br>            <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(pic_save_path, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>                f.write(pic_get)<br>                <span class="hljs-built_in">print</span>(name + <span class="hljs-string">&quot;下载完成！&quot;</span>)<br><br>        <span class="hljs-keyword">except</span> :<br>            <span class="hljs-built_in">print</span>(name + <span class="hljs-string">&quot;下载失败！&quot;</span>)<br><br>        time.sleep(<span class="hljs-number">0.2</span>)<br><br><br><span class="hljs-comment">#print(response)</span><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">pic_path = tree.xpath(&#x27;//*[@id=&quot;main&quot;]/div[3]/ul/li[1]/a/img&#x27;)</span><br><span class="hljs-string">pic_name = tree.xpath(&#x27;//*[@id=&quot;main&quot;]/div[3]/ul/li[1]/a/b&#x27;)</span><br><span class="hljs-string"></span><br><span class="hljs-string">print(pic_path[0].get(&#x27;src&#x27;))</span><br><span class="hljs-string">print(pic_name[0].text)</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    url = pic_path()<br>    download(url)<br></code></pre>
+
+
+
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><hr>
+<p>首先，我们需要安装<code>lxml</code>库，这是Python的一个第三方库，可以用来解析和操作XML和HTML文档，也是我们使用Xpath爬取网页图片所必须的Python库。</p>
+<pre class="highlight"><code class="hljs python">pip install lxml<br></code></pre>
+
+<hr>
+<p>其次是安装<code>requests</code>库，这是Python的一个第三方库，可以用来发送HTTP请求，我们使用它来获取网页内容，基本上大部分爬虫都需要这个库。</p>
+<pre class="highlight"><code class="hljs plaintext">pip install requests<br></code></pre>
+
+<hr>
+<p>最后，我们也会用到Python的<code>os</code>模块，用来处理图片的下载，以及<code>time</code>模块，<strong>来减缓我们的请求频率，毕竟我们只是练习，我们并不希望用这个爬虫给别人网站造成压力</strong>。</p>
+<hr>
+<h3 id="代码解析之一"><a href="#代码解析之一" class="headerlink" title="代码解析之一"></a>代码解析之一</h3><p><strong>思路分析</strong></p>
+<p>这次我们的目标是在这个网站进行图片的爬取下载,网站的网址为</p>
+<p><a target="_blank" rel="noopener" href="https://pic.netbian.com/4kdongman/index.html">https://pic.netbian.com/4kdongman/index.html</a></p>
+<p>我们需要分析这个网站的结构，拿到我们所需要的信息，从而进行下载图片。</p>
+<p>我们首先去分析目标网站，我们这次挑选的网站结构比较简单。</p>
+<blockquote>
+<p>按 <strong>F12</strong> 进入开发者工具</p>
+</blockquote>
+<p><img src="/../blog_img/py_xpath_1/vW4F6.png" title="按F12后的界面" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vW4F6.png" class="lozad post-image"></p>
+<p>通过图片上的步骤我们进入到网站html界面放置图片的位置。</p>
+<p><img src="/../blog_img/py_xpath_1/vWbzq.png" title="点击图片后的界面" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vWbzq.png" class="lozad post-image"></p>
+<p><strong>接下来我们去找图片到底在哪里，我们这里只找到了相对位置</strong></p>
+<p><img src="/../blog_img/py_xpath_1/vWYkr.png" title="在这里找图片地址" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vWYkr.png" class="lozad post-image"></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vWju5.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vWju5.png"></p>
+<blockquote>
+<p><strong>记得刷新，不刷新找不到这些图片</strong></p>
+</blockquote>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vWxGB.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vWxGB.png"></p>
+<p>我们从这找到了图片的位置，到底是不是这张图片，我门去这个url里看看</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXvdG.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXvdG.png"></p>
+<p>我们可以看到，我们找到的url是正确的，所以我们想要下载图片，就必须拿到图片的url。</p>
+<blockquote>
+<p>接下来我们分析我们拿到的相对位置与图片的位置有什么区别？</p>
+</blockquote>
+<p>我们先来看我们拿到的相对位置</p>
+<p><strong>&#x2F;uploads&#x2F;allimg&#x2F;240618&#x2F;202141-1718713301deda.jpg</strong></p>
+<p>我们再来看我们找到的图片的位置</p>
+<p><strong><a target="_blank" rel="noopener" href="https://pic.netbian.com/uploads/allimg/240618/202141-1718713301deda.jpg">https://pic.netbian.com/uploads/allimg/240618/202141-1718713301deda.jpg</a></strong></p>
+<blockquote>
+<p>这两个地址之间就差了一个<code>https://pic.netbian.com</code><strong>所以如果我们拿到了相对位置，只需要在相对位置上加上<code>https://pic.netbian.com</code>就能找到图片的url。</strong></p>
+</blockquote>
+<hr>
+<h3 id="代码解析之二"><a href="#代码解析之二" class="headerlink" title="代码解析之二"></a>代码解析之二</h3><p><strong>我们现在先编写代码把相对位置的图片url转换成绝对位置的图片url</strong></p>
+<p>这里的代码与最后的代码不同，我们以后会改。</p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">from</span> lxml <span class="hljs-keyword">import</span> etree<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> os<br><br>headers = &#123;<br>    <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42&#x27;</span><br>&#125;<span class="hljs-comment">#UA伪装，防止服务器拒绝访问</span><br><br>url = <span class="hljs-string">&quot;https://pic.netbian.com/4kdongman/index.html&quot;</span><br><br>response = requests.get(url, headers=headers).text.encode(<span class="hljs-string">&#x27;iso-8859-1&#x27;</span>)<span class="hljs-comment">#获取网页内容，同时将网页内容编码为iso-8859-1，也就是解析为中文，要不然全是乱码，根本不是给人看到</span><br><br>tree = etree.HTML(response)<span class="hljs-comment">#解析网页内容,用这个来加载xpath</span><br><br>pic_path = tree.xpath(<span class="hljs-string">&#x27;//*[@id=&quot;main&quot;]/div[3]/ul/li[1]/a/img/@src&#x27;</span>)[<span class="hljs-number">0</span>]<span class="hljs-comment">#获取相对位置的图片url</span><br><br><span class="hljs-built_in">print</span>(pic_path)<span class="hljs-comment">#打印相对位置的图片url</span><br></code></pre>
+
+<p>这里我们先看一下找到的是不是相对位置，下面图片是输出</p>
+<p><img src="/../blog_img/py_xpath_1/vXB4H.png" title="输出" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXB4H.png" class="lozad post-image"></p>
+<p>确实是我们想要的输出。</p>
+<p>对于xpath怎么获取图片的url，在浏览器我们可以直接右键获取xpath地址，如有需要还是建议大家去看看xpath的语法。</p>
+<p>以后我们再细讲一下，我们先来分析我们的代码</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXkC7.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXkC7.png"></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vX0Fw.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vX0Fw.png"></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXqzo.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXqzo.png"></p>
+<p>两个中随便挑一个就行，我们这里用的是<code>//*[@id=&quot;main&quot;]/div[3]/ul/li[1]/a/img</code>这样为了我们能够拿到html中的图片url，我们需要用到<code>@src</code>属性，这个属性可以帮助我们拿到图片的url，当然返回的是一个列表，我们再用<code>[0]</code>来获取第一个url，就可以拿到图片的url了。<br><code>//*[@id=&quot;main&quot;]/div[3]/ul/li[1]/a/img/@src</code></p>
+<p>这样我们就拿到了第一个图片的位置，但是我们需要拿到所以的图片的url，那我们要怎么办呢？</p>
+<p>聪明的同志已经知道了，那就写个循环呗，把所有的url都拿到。</p>
+<blockquote>
+<p>但提醒一点的是，我们是进入到了<code>&lt;li&gt;</code>标签中拿到的图片的URL，我们再分析一下图片的位置，我们会发现，所有的图片都包裹在<code>&lt;li&gt;</code>中，所以我们只需要循环遍历所有的<code>&lt;li&gt;</code>标签，然后再用xpath来获取图片的url就行了。</p>
+</blockquote>
+<p>所以事不宜迟，我们改代码把所有图片的url都拿到。</p>
+<pre class="highlight"><code class="hljs python">tree = etree.HTML(response)<span class="hljs-comment">#解析网页内容,用这个来加载xpath</span><br><br>pic_path = tree.xpath(<span class="hljs-string">&#x27;//*[@id=&quot;main&quot;]/div[3]/ul/li&#x27;</span>)<span class="hljs-comment">#获取相对位置的图片url</span><br><span class="hljs-keyword">for</span> pic <span class="hljs-keyword">in</span> pic_path:<br>    html_url = <span class="hljs-string">&quot;https://pic.netbian.com&quot;</span> + pic.xpath(<span class="hljs-string">&#x27;a/img/@src&#x27;</span>)[<span class="hljs-number">0</span>]<br>    <span class="hljs-built_in">print</span>(html_url)<br><br></code></pre>
+
+<hr>
+<blockquote>
+<p><code>tree = etree.HTML(response)#解析网页内容,用这个来加载xpath</code><br><strong>这个代码及以上都没有改动，只有他的下面进行了改动，以后我们也是这样提示我们所改动的地方!!!!!!。</strong></p>
+</blockquote>
+<hr>
+<p>下面是输出,这样我们就拿到了所有图片的url了，当然只是这一页，下面的页数我们稍后再讲。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXR0I.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXR0I.png"></p>
+<p>我们再来获取他的名字，这个我们就不解释了，希望大家自己尝试一下，我们直接给出代码。</p>
+<pre class="highlight"><code class="hljs python">pic_path = tree.xpath(<span class="hljs-string">&#x27;//*[@id=&quot;main&quot;]/div[3]/ul/li&#x27;</span>)<span class="hljs-comment">#获取相对位置的图片url</span><br><br><span class="hljs-keyword">for</span> pic <span class="hljs-keyword">in</span> pic_path:<br>    html_url = <span class="hljs-string">&quot;https://pic.netbian.com&quot;</span> + pic.xpath(<span class="hljs-string">&#x27;a/img/@src&#x27;</span>)[<span class="hljs-number">0</span>]<br>    name_url = pic.xpath(<span class="hljs-string">&#x27;a/b/text()&#x27;</span>)[<span class="hljs-number">0</span>]<br>    <span class="hljs-built_in">print</span>(html_url)<br>    <span class="hljs-built_in">print</span>(name_url)<br></code></pre>
+<p>下面是输出</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXaui.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXaui.png"></p>
+<h3 id="代码解析之三"><a href="#代码解析之三" class="headerlink" title="代码解析之三"></a>代码解析之三</h3><p><strong>我们现在开始编写代码来下载图片</strong></p>
+<p>既然名字和地址我们都拿到了，剩下的就是怎么把图片给下载下来了。</p>
+<blockquote>
+<p>这里有一点要注意，图片保存的时候名字有限制，比如我们下载的第一个图片的名字中有<strong>星号</strong>，这就不行，所以我们需要对名字进行处理，比如把空格替换成下划线，把*替换成其他字符等。</p>
+</blockquote>
+<pre class="highlight"><code class="hljs python"><br><span class="hljs-keyword">for</span> pic <span class="hljs-keyword">in</span> pic_path:<br>    html_url = <span class="hljs-string">&quot;https://pic.netbian.com&quot;</span> + pic.xpath(<span class="hljs-string">&#x27;a/img/@src&#x27;</span>)[<span class="hljs-number">0</span>]<br>    name_url = pic.xpath(<span class="hljs-string">&#x27;a/b/text()&#x27;</span>)[<span class="hljs-number">0</span>]<br>    <span class="hljs-built_in">print</span>(html_url)<br>    <span class="hljs-built_in">print</span>(name_url)<br>    name = <span class="hljs-built_in">str</span>(name_url.replace(<span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;_&quot;</span>) + <span class="hljs-string">&quot;.jpg&quot;</span>)<br>    name = <span class="hljs-built_in">str</span>(name.replace(<span class="hljs-string">&quot;*&quot;</span>, <span class="hljs-string">&quot;&quot;</span>))  <span class="hljs-comment"># 处理文件名中含有*的情况，有些文件名中含有*会导致文件无法保存</span><br>    <br>    pic_get = requests.get(html_url, headers=headers).content<span class="hljs-comment">#获取图片内容</span><br>    <br>    <br>    pic_save_path = <span class="hljs-string">&quot;./pic/&quot;</span> + name <span class="hljs-comment"># 图片保存路径</span><br><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">&quot;./pic/&quot;</span>):<span class="hljs-comment">#判断图片保存路径是否存在，不存在则创建</span><br>        os.makedirs(<span class="hljs-string">&quot;./pic/&quot;</span>)<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(pic_save_path, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>        f.write(pic_get)<br>        <span class="hljs-built_in">print</span>(name + <span class="hljs-string">&quot;下载完成！&quot;</span>)<br>        <br>        time.sleep(<span class="hljs-number">0.3</span>) <span class="hljs-comment"># 防止被服务器封IP</span><br></code></pre>
+<p>下面是输出</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXIvR.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXIvR.png"></p>
+<p>首先，我们获取的名字需要处理，我们需要把名字中的空格和星号都处理掉，这样才能保存为一个文件名，同时我们要加入<code>.jpg</code>后缀，才能保存图片，我们就用<code>replace()</code>函数来替换空格和星号，然后加上<code>.jpg</code>后缀，<code>replace</code>函数的第一个参数是被替换的字符，第二个参数是替换成什么字符。</p>
+<p>然后，我们获取图片的url，然后用<code>requests</code>库来获取图片的内容，<code>requests.get(url, headers=headers).content</code>,这里的<code>content</code>是<strong>持续化存储</strong>，我们要用这种方式存储图片。</p>
+<p>我们再用<code>os</code>库来判断图片保存路径是否存在，不存在则创建，然后用<code>with open(pic_save_path, &#39;wb&#39;) as f:</code>来写入图片内容，最后打印下载完成。</p>
+<blockquote>
+<p>对于<code>with open(pic_save_path, &#39;wb&#39;) as f:</code>这句代码，我们用<code>wb</code>模式打开文件，<code>wb</code>模式是写入二进制文件，<code>with open(pic_save_path, &#39;wb&#39;) as f:</code>的意思是打开一个文件，文件名为<code>pic_save_path</code>，以二进制写入模式打开，然后用<code>f.write(pic_get)</code>来写入图片内容，<code>pic_get</code>是获取到的图片内容。</p>
+</blockquote>
+<p>最后，我们用<code>time.sleep(0.3)</code>来防止被服务器封IP，毕竟我们只是练习，我们并不希望用这个爬虫给别人网站造成压力。</p>
+<h3 id="代码解析之四"><a href="#代码解析之四" class="headerlink" title="代码解析之四"></a>代码解析之四</h3><p><strong>我们再来下载其他页面的图片</strong></p>
+<p>说实话到这里基本上已经完成一半多了，我们再坚持一下，就成功了。</p>
+<p>我们先来分析一下其他页面的图片的位置。</p>
+<p><strong>第一页</strong></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXNDz.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXNDz.png"></p>
+<p><strong>第二页</strong></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXPAe.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXPAe.png"></p>
+<p><strong>第三页</strong></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXlbk.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXlbk.png"></p>
+<blockquote>
+<p>我们可以看到，第一页为<code>index.html</code>，第二页为<code>index_2.html</code>，第三页为<code>index_3.html</code>。</p>
+</blockquote>
+<p>大家可以自己分析一下第二，三页图片的位置，是和第一页一样的，我们不再赘述。</p>
+<p>这样我们就得开动一下脑筋，第一页和其他页的url有差别，但是第二三四及以后的页面的url是有规律的，我们可以用循环来实现，但是第一页呢？</p>
+<p>当然我们可以直接用笨办法，写两个循环，但感觉太臃肿了，不太好。</p>
+<h3 id="代码解析之五"><a href="#代码解析之五" class="headerlink" title="代码解析之五"></a>代码解析之五</h3><p><strong>实现思路及优化</strong></p>
+<blockquote>
+<p>思路导图</p>
+</blockquote>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_xpath_1/vXOJQ.png" class="lozad post-image"src="/../blog_img/py_xpath_1/vXOJQ.png"></p>
+<pre class="highlight"><code class="hljs python"><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">from</span> lxml <span class="hljs-keyword">import</span> etree<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> os<br><br>headers = &#123;<br>    <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">&quot;./pic/&quot;</span>):<br>    os.makedirs(<span class="hljs-string">&quot;./pic/&quot;</span>)<br><br>url_list = []<br>page = <span class="hljs-number">0</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">pic_path</span>():<br>    <span class="hljs-keyword">global</span> page,url_list<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br><br>        page = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;输入下载页数：&quot;</span>)<br>        <span class="hljs-keyword">try</span>:<br>            page = <span class="hljs-built_in">int</span>(page)<br>        <span class="hljs-keyword">except</span> ValueError:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入页数有误！&quot;</span>)<br>            <span class="hljs-keyword">continue</span><br><br>        <span class="hljs-keyword">if</span> page == <span class="hljs-number">1</span>:<br>            url = <span class="hljs-string">&quot;https://pic.netbian.com/4kdongman/index.html&quot;</span><br>            <span class="hljs-keyword">return</span> url<br><br><br>        <span class="hljs-keyword">elif</span> page &gt; <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, page + <span class="hljs-number">1</span>):<br>                url_list.append(<span class="hljs-string">&quot;https://pic.netbian.com/4kdongman/index.html&quot;</span>)<br>                url_list.append(<span class="hljs-string">&quot;https://pic.netbian.com/4kdongman/index_&#123;&#125;.html&quot;</span>.<span class="hljs-built_in">format</span>(i))<br><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入页数有误！&quot;</span>)<br>            <span class="hljs-keyword">continue</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">download</span>(<span class="hljs-params">url</span>):<br><br>    <span class="hljs-keyword">if</span> url <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        response = requests.get(url, headers=headers).text.encode(<span class="hljs-string">&#x27;iso-8859-1&#x27;</span>)<br>        Batch_processing(response)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> url_list:<br>            response = requests.get(url, headers=headers).text.encode(<span class="hljs-string">&#x27;iso-8859-1&#x27;</span>)<br>            Batch_processing(response)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Batch_processing</span>(<span class="hljs-params">response</span>):<br>    tree = etree.HTML(response)<br>    pic_list = tree.xpath(<span class="hljs-string">&#x27;//*[@id=&quot;main&quot;]/div[3]/ul/li&#x27;</span>)<br><br>    <span class="hljs-keyword">for</span> pic_list_item <span class="hljs-keyword">in</span> pic_list:<br><br>        html_url = <span class="hljs-string">&quot;https://pic.netbian.com&quot;</span> + pic_list_item.xpath(<span class="hljs-string">&#x27;a/img/@src&#x27;</span>)[<span class="hljs-number">0</span>]<br>        name_pat = pic_list_item.xpath(<span class="hljs-string">&#x27;a/b/text()&#x27;</span>)[<span class="hljs-number">0</span>]<br><br>        <span class="hljs-built_in">print</span>(html_url)<br>        <span class="hljs-built_in">print</span>(name_pat)<br><br>        <span class="hljs-keyword">try</span>:<br>            name = <span class="hljs-built_in">str</span>(name_pat.replace(<span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;_&quot;</span>) + <span class="hljs-string">&quot;.jpg&quot;</span>)<br>            name = <span class="hljs-built_in">str</span>(name.replace(<span class="hljs-string">&quot;*&quot;</span>, <span class="hljs-string">&quot;&quot;</span>))  <span class="hljs-comment"># 处理文件名中含有*的情况，有些文件名中含有*会导致文件无法保存</span><br>            pic_get = requests.get(html_url, headers=headers).content<br><br>            pic_save_path = <span class="hljs-string">&quot;./pic/&quot;</span> + name<br><br><br>            <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(pic_save_path, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>                f.write(pic_get)<br>                <span class="hljs-built_in">print</span>(name + <span class="hljs-string">&quot;下载完成！&quot;</span>)<br><br>        <span class="hljs-keyword">except</span> :<br>            <span class="hljs-built_in">print</span>(name + <span class="hljs-string">&quot;下载失败！&quot;</span>)<br><br>        time.sleep(<span class="hljs-number">0.2</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    url = pic_path()<br>    download(url)<br></code></pre>
+<blockquote>
+<p>我的思路是首先把一些无用的资源放到外面，减少资源的浪费，比如说<code>headers</code>、<code>url_list</code>、<code>page</code>，比较headers用的话只用他的常量，放到循环里面，不断的加载他却不用，就是资源的浪费。</p>
+</blockquote>
+<blockquote>
+<p>毕竟第一页和其他页并没有什么规律，我就打算把其他页的url都放到<code>url_list</code>里面。</p>
+</blockquote>
+<blockquote>
+<p>对于page在外面就是随便设置的一个量，你设置1000000000000000也没有问题，我们主要是用page判断你要下载的页面数量，肯定是要立马获取的，一进入程序就会把page的值进行修改，所以我觉得还是放到外面比较好。</p>
+</blockquote>
+<p>首先，我们定义了一个函数<code>pic_path()</code>,在这个函数里面，我们先把<code>page</code>和url_list都放到全局变量里面,因为我们要在函数中改变<code>page</code>的值，所以用全局变量，让其他的函数可以访问到。</p>
+<p>之后，我们用<code>input</code>获取我们要下载的页数，然后用<code>try except</code>来判断输入的是否为数字，如果不是数字，就提示输入有误，如果是数字，就判断是否大于1，如果大于1，就把url_list里面添加url(毕竟第一页和其他页没有联系，所以我们就直接把直接把第一页的url放到url_list里面)，如果等于1，就返回url。</p>
+<p>所以当我们要下载的页数超过两页的时候，我们就让函数遍历url_list，获取url。</p>
+<p>然后，我们定义了一个函数<code>download(url)</code>,这个函数就是用来下载图片的，我们先判断url是否为None，如果不是None，就说明是第一页，我们就直接调用<code>Batch_processing(response)</code>函数，如果是None，就说明不是第一页，我们就遍历url_list，调用<code>Batch_processing(response)</code>函数。</p>
+<p>然后，我们定义了一个函数<code>Batch_processing(response)</code>,这个函数就是用来处理图片的，我们先用<code>etree</code>来解析网页内容，然后用<code>xpath</code>来获取图片的url和名字，然后用<code>requests</code>来获取图片的内容，然后用<code>os</code>来判断图片保存路径是否存在，不存在则创建，然后用<code>with open(pic_save_path, &#39;wb&#39;) as f:</code>来写入图片内容，最后打印下载完成。</p>
+<p>最后，我们用<code>if __name__ == &#39;__main__&#39;:</code>来判断是否是主函数，如果是，就调用<code>pic_path()</code>函数，获取url，然后调用<code>download(url)</code>函数，开始下载图片。</p>
+<p>这样，我们就实现了下载所有页面的图片。</p>
+<hr>
+<h1 id="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"><a href="#如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！" class="headerlink" title="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"></a>如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</h1><blockquote>
+<p>爱发电地址:<a target="_blank" rel="noopener" href="https://afdian.net/a/AuroraBreeze">https://afdian.net/a/AuroraBreeze</a></p>
+</blockquote>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            西门啸雪
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="https://ximenxiaoxue.github.io/2024/06/20/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-Xpath%E7%88%AC%E5%8F%96%E5%9B%BE%E7%89%87/">
+            https://ximenxiaoxue.github.io/2024/06/20/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-Xpath%E7%88%AC%E5%8F%96%E5%9B%BE%E7%89%87/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2024/06/21/hexo%E9%83%A8%E5%88%86%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">hexo部分问题解决 </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'tRyzSH5lHX0I5brThoqaOrxx-gzGzoHsz',
+        appKey: 'ZQpppITbmXCyEPCotughfXEJ',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'true',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'true',
+        requiredFields: ["nick","mail"],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-Xpath%E7%88%AC%E5%8F%96%E5%9B%BE%E7%89%87"><span class="toc-text">python爬虫系列:Xpath爬取图片</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BB%A3%E7%A0%81"><span class="toc-text">python代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%B8%80"><span class="toc-text">代码解析之一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BA%8C"><span class="toc-text">代码解析之二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%B8%89"><span class="toc-text">代码解析之三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E5%9B%9B"><span class="toc-text">代码解析之四</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BA%94"><span class="toc-text">代码解析之五</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
+</div>
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-Xpath%E7%88%AC%E5%8F%96%E5%9B%BE%E7%89%87"><span class="toc-text">python爬虫系列:Xpath爬取图片</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BB%A3%E7%A0%81"><span class="toc-text">python代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%B8%80"><span class="toc-text">代码解析之一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BA%8C"><span class="toc-text">代码解析之二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%B8%89"><span class="toc-text">代码解析之三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E5%9B%9B"><span class="toc-text">代码解析之四</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B%E4%BA%94"><span class="toc-text">代码解析之五</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2024-07-08</div>
+        <a href="/2024/07/08/pywifi%E7%A0%B4%E8%A7%A3WiFi%E5%AF%86%E7%A0%81%E7%A4%BA%E4%BE%8B/"><div class="recent-posts-item-content">pywifi破解WiFi密码示例</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2024-06-21</div>
+        <a href="/2024/06/21/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-beautifulsoup%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/"><div class="recent-posts-item-content">python爬虫系列:beautifulsoup爬虫与线程池</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2024-06-21</div>
+        <a href="/2024/06/21/kaze%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/"><div class="recent-posts-item-content">kaze主题配置建议</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2024-06-21</div>
+        <a href="/2024/06/21/hexo%E9%83%A8%E5%88%86%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"><div class="recent-posts-item-content">hexo部分问题解决</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2024
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          个人博客
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>
