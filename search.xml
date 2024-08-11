@@ -25,6 +25,251 @@
       </tags>
   </entry>
   <entry>
+    <title>kaze主题配置建议</title>
+    <url>/2024/06/21/kaze%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/</url>
+    <content><![CDATA[<blockquote>
+<p>因为<code>kaze</code>的主题配置文档已经看不了了，而且<code>kaze</code>的github也已经一年多没有进行提交了，并且<code>kaze</code>的主题用的人并不多，所以我就把我摸索的知识来分享一下。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>请先安装好<code>hexo</code>及<code>kaze</code>主题。</p>
+<h2 id="修改为中文页面"><a href="#修改为中文页面" class="headerlink" title="修改为中文页面"></a>修改为中文页面</h2><p><code>kaze</code>主题默认为英文，所以需要修改为中文，但是修改为中文的配置文件并不在<code>kaze</code>主题的<code>-config.yml</code>文件中，而是在<code>hexo</code>的<code>_config.yml</code>文件中。</p>
+<p>所以我们去hexo的<code>_config.yml</code>文件中找到<code>language</code>字段，将其修改为<code>zh-CN</code>。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-11-02.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-12-52.png"
+                     
+                ></p>
+<p>修改完成后，我们的主题页面就变成了中文了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-14-07.png"
+                     
+                ></p>
+<hr>
+<h2 id="删除不必要的页面"><a href="#删除不必要的页面" class="headerlink" title="删除不必要的页面"></a>删除不必要的页面</h2><p><code>kaze</code>主题有很多页面，其中有些页面似乎并没有布置好，我们进去后发现这些页面都是空白的，所以我们可以将这些页面删除掉。</p>
+<p>在这里我们只需要把那些没有用的页面进行注释掉就可以了。</p>
+<p>在<code>kaze</code>的<code>_config.yml</code>中注释掉<code>about</code>页面的配置，可以参照我的配置。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-17-55.png"
+                     
+                ></p>
+<p>当然要告诉你的一点是，友链的<code>link</code>并没有中文，所以这里我们手动把他改为中文。</p>
+<hr>
+<h2 id="kaze主题的-config-yml配置"><a href="#kaze主题的-config-yml配置" class="headerlink" title="kaze主题的_config.yml配置"></a>kaze主题的<code>_config.yml</code>配置</h2><p>下面大家可以根据图片进行对应配置<br>。</p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-23-29.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-24-52.png"
+                     
+                ></p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-26-11.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-28-21.png"
+                     
+                ></p>
+<p>这里图片上传的方式是图床，大家可以去网上找些免费的图床。</p>
+<p>不过，我还是推荐用自己的文件夹放图片，一是不用担心钱的问题，二是可以自己管理图片，不用担心博客文章里的图片丢失。</p>
+<p>这是我配置图片的信息，给大家看看。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-19.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-53.png"
+                     
+                ></p>
+<p>我直接在<code>hexo</code>的<code>source</code>文件夹中创建了这两个放图片的文件夹。</p>
+<p>不过，我这种方式有点烂，我还是比较推荐在<code>source</code>文件中只建一个文件夹专门放图片，然后再在创建的文件夹中再创建各个博客文章要用的文件夹，这样方便管理。</p>
+<p>这是我在markdown语言中对图片的引用</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-35-10.png"
+                     
+                ></p>
+<p>用<code>..</code>表示上一级目录，这样再进入创建的文件夹里拿图片就可以了。</p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-37-17.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-38-12.png"
+                     
+                ></p>
+<p>这个链接是有官方的配置的，图标只能用官方的，而且官方的的图标并不多，大家可以去这个网站来看看：</p>
+<p><a class="link"   href="https://www.cnblogs.com/yuanlinblog/p/16654439.html" >https://www.cnblogs.com/yuanlinblog/p/16654439.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-17-44.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-18-50.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-19-16.png"
+                     
+                ></p>
+<p>这个就是<strong>友链</strong>，我们可以把他的名字什么的改了，<code>avatar</code>是头像，这里要放头像的链接，<code>description</code>就是描述了，当然这里你可以放许多的人。</p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-22-35.png"
+                     
+                ></p>
+<blockquote>
+<p>注意：<code>kaze</code>的搜索默认关闭，所以我们要把<code>enable</code>改为<code>true</code>才会开启搜索功能。其他的地方就不需要改动了。</p>
+</blockquote>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-24-49.png"
+                     
+                > </p>
+<p>注意：<code>kaze</code>的访问统计是不可用的，开启了也是统计错误的访问次数，所以我们关闭，其他的看注释就好了。</p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-26-48.png"
+                     
+                ></p>
+<p><code>kaze</code>主题的评论是默认关闭的，我们把<code>enable</code>改为<code>true</code>就开启了评论功能。</p>
+<p>评论用的插件是<code>valine</code>，这需要我们注册一个<code>leancloud</code>账号，然后在<code>valine</code>的<code>_config.yml</code>文件中填入自己的<code>app_id</code>和<code>app_key</code>。</p>
+<p>大家要去：<a class="link"   href="https://console.leancloud.cn/" >https://console.leancloud.cn/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 注册一个<code>leancloud</code>账号，然后创建一个应用</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-00.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-55.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-31-15.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-32-08.png"
+                     
+                ></p>
+<p>然后我们在<code>valine</code>的<code>_config.yml</code>文件中填入自己的<code>app_id</code>和<code>app_key</code>，这样我们就可以用评论功能了。</p>
+<p>具体使用可以去<code>valine</code>的官方文档看看：<a class="link"   href="https://valine.js.org/quickstart.html" >https://valine.js.org/quickstart.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-34-48.png"
+                     
+                ></p>
+<p>这三个箭头分别是数学公式的渲染（默认关闭），代码块的渲染，以及文章字数统计（默认开启）文章的统计分析（默认关闭）。</p>
+<hr>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-37-44.png"
+                     
+                ></p>
+<p>这里改字体大小</p>
+<hr>
+<h2 id="博客文章的配置"><a href="#博客文章的配置" class="headerlink" title="博客文章的配置"></a>博客文章的配置</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-39-22.png"
+                     
+                ></p>
+<p>title：文章标题</p>
+<p>date：文章日期</p>
+<p>tags：文章标签</p>
+<p>categories：文章分类</p>
+<p>对应的也就是</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-41-42.png"
+                     
+                ></p>
+<hr>
+<p>我们的博客的文章底部也需要修改</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-43-37.png"
+                     
+                ></p>
+<p>不修改的话，文章链接是错误的。</p>
+<blockquote>
+<p>注意：这里文章的链接修改不在<code>kaze</code>的配置文件<code>_config.yml</code>中，而是在<code>hexo</code>的<code>_config.yml</code>文件中,所以我们去<code>hexo</code>的配置文件中修改。</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-46-08.png"
+                     
+                ></p>
+<p>在这里把自己的博客地址放上就可以了。</p>
+<hr>
+<h1 id="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"><a href="#如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！" class="headerlink" title="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"></a>如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</h1><blockquote>
+<p>爱发电地址:<a class="link"   href="https://afdian.com/a/AuroraBreeze" >https://afdian.com/a/AuroraBreeze <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>kaze</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python爬虫系列-JS逆向网易云评论</title>
     <url>/2024/07/29/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA/</url>
     <content><![CDATA[<h2 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h2><p><strong>下载所需要的库</strong></p>
@@ -368,251 +613,6 @@
       </categories>
       <tags>
         <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kaze主题配置建议</title>
-    <url>/2024/06/21/kaze%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/</url>
-    <content><![CDATA[<blockquote>
-<p>因为<code>kaze</code>的主题配置文档已经看不了了，而且<code>kaze</code>的github也已经一年多没有进行提交了，并且<code>kaze</code>的主题用的人并不多，所以我就把我摸索的知识来分享一下。</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>请先安装好<code>hexo</code>及<code>kaze</code>主题。</p>
-<h2 id="修改为中文页面"><a href="#修改为中文页面" class="headerlink" title="修改为中文页面"></a>修改为中文页面</h2><p><code>kaze</code>主题默认为英文，所以需要修改为中文，但是修改为中文的配置文件并不在<code>kaze</code>主题的<code>-config.yml</code>文件中，而是在<code>hexo</code>的<code>_config.yml</code>文件中。</p>
-<p>所以我们去hexo的<code>_config.yml</code>文件中找到<code>language</code>字段，将其修改为<code>zh-CN</code>。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-11-02.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-12-52.png"
-                     
-                ></p>
-<p>修改完成后，我们的主题页面就变成了中文了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-14-07.png"
-                     
-                ></p>
-<hr>
-<h2 id="删除不必要的页面"><a href="#删除不必要的页面" class="headerlink" title="删除不必要的页面"></a>删除不必要的页面</h2><p><code>kaze</code>主题有很多页面，其中有些页面似乎并没有布置好，我们进去后发现这些页面都是空白的，所以我们可以将这些页面删除掉。</p>
-<p>在这里我们只需要把那些没有用的页面进行注释掉就可以了。</p>
-<p>在<code>kaze</code>的<code>_config.yml</code>中注释掉<code>about</code>页面的配置，可以参照我的配置。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-17-55.png"
-                     
-                ></p>
-<p>当然要告诉你的一点是，友链的<code>link</code>并没有中文，所以这里我们手动把他改为中文。</p>
-<hr>
-<h2 id="kaze主题的-config-yml配置"><a href="#kaze主题的-config-yml配置" class="headerlink" title="kaze主题的_config.yml配置"></a>kaze主题的<code>_config.yml</code>配置</h2><p>下面大家可以根据图片进行对应配置<br>。</p>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-23-29.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-24-52.png"
-                     
-                ></p>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-26-11.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-28-21.png"
-                     
-                ></p>
-<p>这里图片上传的方式是图床，大家可以去网上找些免费的图床。</p>
-<p>不过，我还是推荐用自己的文件夹放图片，一是不用担心钱的问题，二是可以自己管理图片，不用担心博客文章里的图片丢失。</p>
-<p>这是我配置图片的信息，给大家看看。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-19.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-53.png"
-                     
-                ></p>
-<p>我直接在<code>hexo</code>的<code>source</code>文件夹中创建了这两个放图片的文件夹。</p>
-<p>不过，我这种方式有点烂，我还是比较推荐在<code>source</code>文件中只建一个文件夹专门放图片，然后再在创建的文件夹中再创建各个博客文章要用的文件夹，这样方便管理。</p>
-<p>这是我在markdown语言中对图片的引用</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-35-10.png"
-                     
-                ></p>
-<p>用<code>..</code>表示上一级目录，这样再进入创建的文件夹里拿图片就可以了。</p>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-37-17.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-38-12.png"
-                     
-                ></p>
-<p>这个链接是有官方的配置的，图标只能用官方的，而且官方的的图标并不多，大家可以去这个网站来看看：</p>
-<p><a class="link"   href="https://www.cnblogs.com/yuanlinblog/p/16654439.html" >https://www.cnblogs.com/yuanlinblog/p/16654439.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-17-44.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-18-50.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-19-16.png"
-                     
-                ></p>
-<p>这个就是<strong>友链</strong>，我们可以把他的名字什么的改了，<code>avatar</code>是头像，这里要放头像的链接，<code>description</code>就是描述了，当然这里你可以放许多的人。</p>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-22-35.png"
-                     
-                ></p>
-<blockquote>
-<p>注意：<code>kaze</code>的搜索默认关闭，所以我们要把<code>enable</code>改为<code>true</code>才会开启搜索功能。其他的地方就不需要改动了。</p>
-</blockquote>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-24-49.png"
-                     
-                > </p>
-<p>注意：<code>kaze</code>的访问统计是不可用的，开启了也是统计错误的访问次数，所以我们关闭，其他的看注释就好了。</p>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-26-48.png"
-                     
-                ></p>
-<p><code>kaze</code>主题的评论是默认关闭的，我们把<code>enable</code>改为<code>true</code>就开启了评论功能。</p>
-<p>评论用的插件是<code>valine</code>，这需要我们注册一个<code>leancloud</code>账号，然后在<code>valine</code>的<code>_config.yml</code>文件中填入自己的<code>app_id</code>和<code>app_key</code>。</p>
-<p>大家要去：<a class="link"   href="https://console.leancloud.cn/" >https://console.leancloud.cn/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 注册一个<code>leancloud</code>账号，然后创建一个应用</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-00.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-55.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-31-15.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-32-08.png"
-                     
-                ></p>
-<p>然后我们在<code>valine</code>的<code>_config.yml</code>文件中填入自己的<code>app_id</code>和<code>app_key</code>，这样我们就可以用评论功能了。</p>
-<p>具体使用可以去<code>valine</code>的官方文档看看：<a class="link"   href="https://valine.js.org/quickstart.html" >https://valine.js.org/quickstart.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-34-48.png"
-                     
-                ></p>
-<p>这三个箭头分别是数学公式的渲染（默认关闭），代码块的渲染，以及文章字数统计（默认开启）文章的统计分析（默认关闭）。</p>
-<hr>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-37-44.png"
-                     
-                ></p>
-<p>这里改字体大小</p>
-<hr>
-<h2 id="博客文章的配置"><a href="#博客文章的配置" class="headerlink" title="博客文章的配置"></a>博客文章的配置</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-39-22.png"
-                     
-                ></p>
-<p>title：文章标题</p>
-<p>date：文章日期</p>
-<p>tags：文章标签</p>
-<p>categories：文章分类</p>
-<p>对应的也就是</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-41-42.png"
-                     
-                ></p>
-<hr>
-<p>我们的博客的文章底部也需要修改</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-43-37.png"
-                     
-                ></p>
-<p>不修改的话，文章链接是错误的。</p>
-<blockquote>
-<p>注意：这里文章的链接修改不在<code>kaze</code>的配置文件<code>_config.yml</code>中，而是在<code>hexo</code>的<code>_config.yml</code>文件中,所以我们去<code>hexo</code>的配置文件中修改。</p>
-</blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-46-08.png"
-                     
-                ></p>
-<p>在这里把自己的博客地址放上就可以了。</p>
-<hr>
-<h1 id="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"><a href="#如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！" class="headerlink" title="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"></a>如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</h1><blockquote>
-<p>爱发电地址:<a class="link"   href="https://afdian.com/a/AuroraBreeze" >https://afdian.com/a/AuroraBreeze <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>kaze</tag>
       </tags>
   </entry>
   <entry>
