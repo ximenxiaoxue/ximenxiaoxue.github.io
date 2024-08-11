@@ -1,884 +1,1431 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-  <meta charset="UTF-8">
-  <meta 
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <meta 
-    http-equiv="X-UA-Compatible" 
-    content="ie=edge">
-  <meta 
-    name="theme-color" 
-    content="#fff" 
-    id="theme-color">
-  <meta 
-    name="description" 
-    content="Hexo">
-  <link 
-    rel="icon" 
-    href="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg">
-  <title>kaze主题配置建议</title>
-  
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
     
-      <meta 
-        property="og:title" 
-        content="kaze主题配置建议">
+    <meta name="author" content="西门啸雪">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/06/21/kaze配置建议/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="因为kaze的主题配置文档已经看不了了，而且kaze的github也已经一年多没有进行提交了，并且kaze的主题用的人并不多，所以我就把我摸索的知识来分享一下。  前言请先安装好hexo及kaze主题。 修改为中文页面kaze主题默认为英文，所以需要修改为中文，但是修改为中文的配置文件并不在kaze主题的-config.yml文件中，而是在hexo的_config.yml文件中。 所以我们去he">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kaze主题配置建议">
+<meta property="og:url" content="http://example.com/2024/06/21/kaze%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="因为kaze的主题配置文档已经看不了了，而且kaze的github也已经一年多没有进行提交了，并且kaze的主题用的人并不多，所以我就把我摸索的知识来分享一下。  前言请先安装好hexo及kaze主题。 修改为中文页面kaze主题默认为英文，所以需要修改为中文，但是修改为中文的配置文件并不在kaze主题的-config.yml文件中，而是在hexo的_config.yml文件中。 所以我们去he">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-11-02.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-12-52.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-14-07.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-17-55.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-23-29.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-24-52.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-26-11.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-28-21.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-19.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-53.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-35-10.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-37-17.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-38-12.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-17-44.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-18-50.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-19-16.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-22-35.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-24-49.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-26-48.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-00.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-55.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-31-15.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-32-08.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-34-48.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-37-44.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-39-22.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-41-42.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-43-37.png">
+<meta property="og:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-46-08.png">
+<meta property="article:published_time" content="2024-06-21T02:58:53.000Z">
+<meta property="article:modified_time" content="2024-08-11T12:56:34.354Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="kaze">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-11-02.png">
     
     
-      <meta 
-        property="og:url" 
-        content="https://ximenxiaoxue.github.io/2024/06/21/kaze%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/index.html">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
     
-    
-      <meta 
-        property="og:img" 
-        content="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg">
-    
-    
-    
-      <meta 
-        property="og:type" 
-        content="article">
-      <meta 
-        property="og:article:published_time" 
-        content="2024-06-21">
-      <meta 
-        property="og:article:modified_time" 
-        content="2024-07-27">
-      <meta 
-        property="og:article:author" 
-        content="西门啸雪">
-      
+    <title>
         
-          <meta 
-            property="og:article:tag" 
-            content="kaze">
+            kaze主题配置建议 -
         
-      
+        AuroBreeze
+    </title>
+
     
-  
-  
-  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
-  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
-  <link rel="preload" href="/css/main.css" as="style" >
-  
-  <link rel="modulepreload" href="//instant.page/5.1.0">
-  
-  <link rel="stylesheet" href="/css/main.css">
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
-  
-  
-  
-    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
-  
-  <script>
-    function loadScript(url, cb) {
-      var script = document.createElement('script');
-      script.src = url;
-      if (cb) script.onload = cb;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-    function loadCSS(href, data, attr) {
-      var sheet = document.createElement('link');
-      sheet.ref = 'stylesheet';
-      sheet.href = href;
-      sheet.dataset[data] = attr;
-      document.head.appendChild(sheet);
-    }
-    function changeCSS(cssFile, data, attr) {
-      var oldlink = document.querySelector(data);
-      var newlink = document.createElement("link");
-      newlink.setAttribute("rel", "stylesheet");
-      newlink.setAttribute("href", cssFile);
-      newlink.dataset.prism = attr;
-      document.head.replaceChild(newlink, oldlink);
-    }
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":false,"site_uv":false,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"AuroBreeze","subtitle":{"text":["等清风拂面,笑看人间"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":80,"backing_speed":80,"starting_delay":1000,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/ximenxiaoxue","instagram":null,"zhihu":null,"twitter":null,"email":"1732373074@aliyun.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Friends":{"icon":"fa-solid fa-link","path":"/links/"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/ximenxiaoxue","Blog":"https://aurobreeze.top"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"西门啸雪的小窝","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/10 12:00:00"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
   </script>
-  
     
-  
-  <script>
-    // control reverse button
-    var reverseDarkList = {
-      dark: 'light',
-      light: 'dark'
-    };
-    var themeColor = {
-      dark: '#1c1c1e',
-      light: '#fff'
-    }
-    // get the data of css prefers-color-scheme
-    var getCssMediaQuery = function() {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-    // reverse current darkmode setting function
-    var reverseDarkModeSetting = function() {
-      var setting = localStorage.getItem('user-color-scheme');
-      if(reverseDarkList[setting]) {
-        setting = reverseDarkList[setting];
-      } else if(setting === null) {
-        setting = reverseDarkList[getCssMediaQuery()];
-      } else {
-        return;
-      }
-      localStorage.setItem('user-color-scheme', setting);
-      return setting;
-    };
-    // apply current darkmode setting
-  </script>
-  
-    <script>
-      var setDarkmode = function(mode) {
-      var setting = mode || localStorage.getItem('user-color-scheme');
-      if(setting === getCssMediaQuery()) {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[setting];
-        document.getElementById('theme-color').dataset.mode = setting;
-      } else if(reverseDarkList[setting]) {
-        document.documentElement.setAttribute('data-user-color-scheme', setting);
-        document.getElementById('theme-color').content = themeColor[setting];
-        document.getElementById('theme-color').dataset.mode = setting;
-      } else {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
-        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
-      }
-    };
-    setDarkmode();
-    </script>
-  
-  
-  
-    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
-    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
-  
-  
-    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
-  
-  
-  
-  
-  
+    <!--- Fontawesome Part-->
     
-    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
-  
-  
-  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-  <script>LA.init({id:"3JKUPn8RBXzO8Bzv",ck:"3JKUPn8RBXzO8Bzv"})</script>
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
 <meta name="generator" content="Hexo 7.3.0"></head>
 
-  <body>
-    <div class="wrapper">
-       
-      <nav class="navbar">
-  <div class="navbar-logo">
-    <a class="navbar-logo-main" href="/">
-      
-        <img 
-          class="navbar-logo-img"
-          width="32"
-          height="32"
-          src="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg" 
-          alt="blog logo">
-      
-      <span class="navbar-logo-dsc">AuroBreeze</span>
-      </a>
-  </div>
-  <div class="navbar-menu">
+
+<body>
+<div class="progress-bar-container">
     
-      <a 
-        href="/" 
-        class="navbar-menu-item">
-        
-          首页
-        
-      </a>
+
     
-      <a 
-        href="/archives" 
-        class="navbar-menu-item">
-        
-          归档
-        
-      </a>
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
     
-      <a 
-        href="/tags" 
-        class="navbar-menu-item">
-        
-          标签
-        
-      </a>
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        AuroBreeze
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
     
-      <a 
-        href="/categories" 
-        class="navbar-menu-item">
-        
-          分类
-        
-      </a>
-    
-      <a 
-        href="/links" 
-        class="navbar-menu-item">
-        
-          友链
-        
-      </a>
-    
-    <button 
-      class="navbar-menu-item darknavbar navbar-menu-btn" 
-      aria-label="Toggle dark mode"
-      id="dark">
-      <i class="iconfont icon-weather"></i>
-    </button>
-    <button 
-      class="navbar-menu-item searchnavbar navbar-menu-btn" 
-      aria-label="Toggle search"
-      id="search">
-      <!-- <i 
-        class="iconfont icon-search" 
-        style="font-size: 1.2rem; font-weight: 400;">
-      </i> -->
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
-        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
-          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
-        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
-          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
-        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
-          d="M283.64 283.64L336 336"></path>
-      </svg>
-    </button>
-  </div>
-</nav> 
-      
-      <div 
-        id="local-search" 
-        style="display: none">
-        <input
-          class="navbar-menu-item"
-          id="search-input"
-          placeholder="请输入搜索内容..." />
-        <div id="search-content"></div>
-      </div>
-      
-      <div class="section-wrap">
-        <div class="container">
-          <div class="columns">
-            <aside class="left-column">
-              
-              <div class="card card-author">
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
                 
-  <img 
-    src="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg" 
-    class="author-img"
-    width="88"
-    height="88"
-    alt="author avatar">
-
-<p class="author-name">西门啸雪</p>
-<p class="author-description">我既从迷雾中走出，便留一地脚印。这是我的爱发电主页，非常感谢支持：https://afdian.net/a/AuroraBreeze</p>
-<div class="author-message">
-  <a 
-    class="author-posts-count" 
-    href="/archives">
-    <span>7</span>
-    <span>文章</span>
-  </a>
-  <a 
-    class="author-categories-count" 
-    href="/categories">
-    <span>3</span>
-    <span>分类</span>
-  </a>
-  <a 
-    class="author-tags-count" 
-    href="/tags">
-    <span>5</span>
-    <span>标签</span>
-  </a>
-</div>
-
-  <div class="author-card-society">
-    
-      <div class="author-card-society-icon">
-        <a target="_blank" rel="noopener" href="https://www.bilibili.com/">
-          <i class="iconfont icon-bilibili society-icon"></i>
-        </a>
-      </div>
-    
-  </div>
-
-              </div>
-               <div class="sticky-tablet">
-  
-  
-    <article class="display-when-two-columns spacer">
-      <div class="card card-content toc-card">
-        <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#kaze%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-text">kaze主题配置建议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BA%E4%B8%AD%E6%96%87%E9%A1%B5%E9%9D%A2"><span class="toc-text">修改为中文页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="toc-text">删除不必要的页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kaze%E4%B8%BB%E9%A2%98%E7%9A%84-config-yml%E9%85%8D%E7%BD%AE"><span class="toc-text">kaze主题的_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">博客文章的配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
-      </div>
-    </article>
-  
-  
-  <article class="card card-content categories-widget">
-    <div class="categories-card">
-  <div class="categories-header">
-    <i 
-      class="iconfont icon-fenlei" 
-      style="padding-right: 2px;">
-    </i>分类
-  </div>
-  <div class="categories-list">
-    
-      <a href="/categories/hexo/">
-        <div class="categories-list-item">
-          hexo
-          <span class="categories-list-item-badge">2</span>
+                AuroBreeze
+                
+            </a>
         </div>
-      </a>
-    
-      <a href="/categories/python/">
-        <div class="categories-list-item">
-          python
-          <span class="categories-list-item-badge">4</span>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/links/"
+                                        >
+                                    <i class="fa-solid fa-link fa-fw"></i>
+                                    友情链接
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/ximenxiaoxue">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://aurobreeze.top">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
         </div>
-      </a>
-    
-      <a href="/categories/%E7%AE%97%E6%B3%95/">
-        <div class="categories-list-item">
-          算法
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
-  </div>
-</div>
-  </article>
-  
-  <article class="card card-content tags-widget">
-    <div class="tags-card">
-  <div class="tags-header">
-    <i 
-      class="iconfont icon-biaoqian" 
-      style="padding-right: 2px;">
-    </i>热门标签
-  </div>
-  <div class="tags-list">
-    
-      <a 
-        href="/tags/%E7%88%AC%E8%99%AB/" 
-        title="爬虫">
-        <div class="tags-list-item">爬虫</div>
-      </a>
-    
-      <a 
-        href="/tags/%E7%AE%97%E6%B3%95/" 
-        title="算法">
-        <div class="tags-list-item">算法</div>
-      </a>
-    
-      <a 
-        href="/tags/pywifi/" 
-        title="pywifi">
-        <div class="tags-list-item">pywifi</div>
-      </a>
-    
-      <a 
-        href="/tags/kaze/" 
-        title="kaze">
-        <div class="tags-list-item">kaze</div>
-      </a>
-    
-      <a 
-        href="/tags/hexo/" 
-        title="hexo">
-        <div class="tags-list-item">hexo</div>
-      </a>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-            </aside>
-            <main class="main-column">
-              
-<article class="card card-content">
-  <header>
-    <h1 class="post-title">
-      kaze主题配置建议
-    </h1>
-  </header>
-  <div class="post-meta post-show-meta">
-    <time datetime="2024-06-21T02:58:53.000Z">
-      <i 
-        class="iconfont icon-calendar" 
-        style="margin-right: 2px;">
-      </i>
-      <span>2024-06-21</span>
-    </time>
-    
-      <span class="dot"></span>
-      
-        <a 
-          href="/categories/hexo/" 
-          class="post-meta-link">
-          hexo
-        </a>
-      
-    
-    
-      <span class="dot"></span>
-      <span>1.1k 字</span>
-    
-  </div>
-  
-    <div 
-      class="post-meta post-show-meta" 
-      style="margin-top: -10px;">
-      <div style="display: flex; align-items: center;">
-        <i 
-          class="iconfont icon-biaoqian" 
-          style="margin-right: 2px; font-size: 1.15rem;">
-        </i>
-        
-          
-          <a 
-            href="/tags/kaze/" 
-            class="post-meta-link">
-            kaze
-          </a>
-        
-      </div>
     </div>
-  
-  </header>
-  <div 
-    id="section" 
-    class="post-content">
-    <h1 id="kaze主题配置建议"><a href="#kaze主题配置建议" class="headerlink" title="kaze主题配置建议"></a>kaze主题配置建议</h1><blockquote>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/links/"
+                        >
+                            <span>
+                                友情链接
+                            </span>
+                            
+                                <i class="fa-solid fa-link fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/ximenxiaoxue">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://aurobreeze.top">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">kaze主题配置建议</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">西门啸雪</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-06-21 10:58:53</span>
+        <span class="mobile">2024-06-21 10:58:53</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-08-11 20:56:34</span>
+            <span class="mobile">2024-08-11 20:56:34</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/hexo/">hexo</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/kaze/">kaze</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <blockquote>
 <p>因为<code>kaze</code>的主题配置文档已经看不了了，而且<code>kaze</code>的github也已经一年多没有进行提交了，并且<code>kaze</code>的主题用的人并不多，所以我就把我摸索的知识来分享一下。</p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>请先安装好<code>hexo</code>及<code>kaze</code>主题。</p>
 <h2 id="修改为中文页面"><a href="#修改为中文页面" class="headerlink" title="修改为中文页面"></a>修改为中文页面</h2><p><code>kaze</code>主题默认为英文，所以需要修改为中文，但是修改为中文的配置文件并不在<code>kaze</code>主题的<code>-config.yml</code>文件中，而是在<code>hexo</code>的<code>_config.yml</code>文件中。</p>
 <p>所以我们去hexo的<code>_config.yml</code>文件中找到<code>language</code>字段，将其修改为<code>zh-CN</code>。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-11-02.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-11-02.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-12-52.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-12-52.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-11-02.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-12-52.png"
+                     
+                ></p>
 <p>修改完成后，我们的主题页面就变成了中文了。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-14-07.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-14-07.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-14-07.png"
+                     
+                ></p>
 <hr>
 <h2 id="删除不必要的页面"><a href="#删除不必要的页面" class="headerlink" title="删除不必要的页面"></a>删除不必要的页面</h2><p><code>kaze</code>主题有很多页面，其中有些页面似乎并没有布置好，我们进去后发现这些页面都是空白的，所以我们可以将这些页面删除掉。</p>
 <p>在这里我们只需要把那些没有用的页面进行注释掉就可以了。</p>
 <p>在<code>kaze</code>的<code>_config.yml</code>中注释掉<code>about</code>页面的配置，可以参照我的配置。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-17-55.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-17-55.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-17-55.png"
+                     
+                ></p>
 <p>当然要告诉你的一点是，友链的<code>link</code>并没有中文，所以这里我们手动把他改为中文。</p>
 <hr>
 <h2 id="kaze主题的-config-yml配置"><a href="#kaze主题的-config-yml配置" class="headerlink" title="kaze主题的_config.yml配置"></a>kaze主题的<code>_config.yml</code>配置</h2><p>下面大家可以根据图片进行对应配置<br>。</p>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-23-29.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-23-29.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-24-52.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-24-52.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-23-29.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-24-52.png"
+                     
+                ></p>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-26-11.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-26-11.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-28-21.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-28-21.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-26-11.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-28-21.png"
+                     
+                ></p>
 <p>这里图片上传的方式是图床，大家可以去网上找些免费的图床。</p>
 <p>不过，我还是推荐用自己的文件夹放图片，一是不用担心钱的问题，二是可以自己管理图片，不用担心博客文章里的图片丢失。</p>
 <p>这是我配置图片的信息，给大家看看。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-19.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-19.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-53.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-53.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-19.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-31-53.png"
+                     
+                ></p>
 <p>我直接在<code>hexo</code>的<code>source</code>文件夹中创建了这两个放图片的文件夹。</p>
 <p>不过，我这种方式有点烂，我还是比较推荐在<code>source</code>文件中只建一个文件夹专门放图片，然后再在创建的文件夹中再创建各个博客文章要用的文件夹，这样方便管理。</p>
 <p>这是我在markdown语言中对图片的引用</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-35-10.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-35-10.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-35-10.png"
+                     
+                ></p>
 <p>用<code>..</code>表示上一级目录，这样再进入创建的文件夹里拿图片就可以了。</p>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-37-17.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-37-17.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-38-12.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-38-12.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-37-17.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_11-38-12.png"
+                     
+                ></p>
 <p>这个链接是有官方的配置的，图标只能用官方的，而且官方的的图标并不多，大家可以去这个网站来看看：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuanlinblog/p/16654439.html">https://www.cnblogs.com/yuanlinblog/p/16654439.html</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/yuanlinblog/p/16654439.html" >https://www.cnblogs.com/yuanlinblog/p/16654439.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-17-44.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-17-44.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-18-50.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-18-50.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-19-16.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-19-16.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-17-44.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-18-50.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-19-16.png"
+                     
+                ></p>
 <p>这个就是<strong>友链</strong>，我们可以把他的名字什么的改了，<code>avatar</code>是头像，这里要放头像的链接，<code>description</code>就是描述了，当然这里你可以放许多的人。</p>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-22-35.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-22-35.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-22-35.png"
+                     
+                ></p>
 <blockquote>
 <p>注意：<code>kaze</code>的搜索默认关闭，所以我们要把<code>enable</code>改为<code>true</code>才会开启搜索功能。其他的地方就不需要改动了。</p>
 </blockquote>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-24-49.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-24-49.png"> </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-24-49.png"
+                     
+                > </p>
 <p>注意：<code>kaze</code>的访问统计是不可用的，开启了也是统计错误的访问次数，所以我们关闭，其他的看注释就好了。</p>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-26-48.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-26-48.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-26-48.png"
+                     
+                ></p>
 <p><code>kaze</code>主题的评论是默认关闭的，我们把<code>enable</code>改为<code>true</code>就开启了评论功能。</p>
 <p>评论用的插件是<code>valine</code>，这需要我们注册一个<code>leancloud</code>账号，然后在<code>valine</code>的<code>_config.yml</code>文件中填入自己的<code>app_id</code>和<code>app_key</code>。</p>
-<p>大家要去：<a target="_blank" rel="noopener" href="https://console.leancloud.cn/">https://console.leancloud.cn/</a> 注册一个<code>leancloud</code>账号，然后创建一个应用</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-00.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-00.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-55.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-55.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-31-15.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-31-15.png"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-32-08.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-32-08.png"></p>
+<p>大家要去：<a class="link"   target="_blank" rel="noopener" href="https://console.leancloud.cn/" >https://console.leancloud.cn/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 注册一个<code>leancloud</code>账号，然后创建一个应用</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-00.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-30-55.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-31-15.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-32-08.png"
+                     
+                ></p>
 <p>然后我们在<code>valine</code>的<code>_config.yml</code>文件中填入自己的<code>app_id</code>和<code>app_key</code>，这样我们就可以用评论功能了。</p>
-<p>具体使用可以去<code>valine</code>的官方文档看看：<a target="_blank" rel="noopener" href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-34-48.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-34-48.png"></p>
+<p>具体使用可以去<code>valine</code>的官方文档看看：<a class="link"   target="_blank" rel="noopener" href="https://valine.js.org/quickstart.html" >https://valine.js.org/quickstart.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-34-48.png"
+                     
+                ></p>
 <p>这三个箭头分别是数学公式的渲染（默认关闭），代码块的渲染，以及文章字数统计（默认开启）文章的统计分析（默认关闭）。</p>
 <hr>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-37-44.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-37-44.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-37-44.png"
+                     
+                ></p>
 <p>这里改字体大小</p>
 <hr>
-<h2 id="博客文章的配置"><a href="#博客文章的配置" class="headerlink" title="博客文章的配置"></a>博客文章的配置</h2><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-39-22.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-39-22.png"></p>
+<h2 id="博客文章的配置"><a href="#博客文章的配置" class="headerlink" title="博客文章的配置"></a>博客文章的配置</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-39-22.png"
+                     
+                ></p>
 <p>title：文章标题</p>
 <p>date：文章日期</p>
 <p>tags：文章标签</p>
 <p>categories：文章分类</p>
 <p>对应的也就是</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-41-42.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-41-42.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-41-42.png"
+                     
+                ></p>
 <hr>
 <p>我们的博客的文章底部也需要修改</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-43-37.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-43-37.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-43-37.png"
+                     
+                ></p>
 <p>不修改的话，文章链接是错误的。</p>
 <blockquote>
 <p>注意：这里文章的链接修改不在<code>kaze</code>的配置文件<code>_config.yml</code>中，而是在<code>hexo</code>的<code>_config.yml</code>文件中,所以我们去<code>hexo</code>的配置文件中修改。</p>
 </blockquote>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-46-08.png" class="lozad post-image"src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-46-08.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/hexo_kaze_2/Snipaste_2024-06-21_13-46-08.png"
+                     
+                ></p>
 <p>在这里把自己的博客地址放上就可以了。</p>
 <hr>
 <h1 id="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"><a href="#如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！" class="headerlink" title="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"></a>如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</h1><blockquote>
-<p>爱发电地址:<a target="_blank" rel="noopener" href="https://afdian.com/a/AuroraBreeze">https://afdian.com/a/AuroraBreeze</a></p>
+<p>爱发电地址:<a class="link"   target="_blank" rel="noopener" href="https://afdian.com/a/AuroraBreeze" >https://afdian.com/a/AuroraBreeze <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 
-  </div>
-  <div>
-    
-      <div 
-        class="post-note note-warning copyright" 
-        style="margin-top: 42px">
-        <p>
-          <span style="font-weight: bold;">作者：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="/about">
-            西门啸雪
-          </a>
-        </p>
-        <p>
-          <span style="font-weight: bold;">文章链接：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="https://ximenxiaoxue.github.io/2024/06/21/kaze%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/">
-            https://ximenxiaoxue.github.io/2024/06/21/kaze%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/
-          </a>
-        </p>
-        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
-      </div>
-    
-  </div>
-</article>
-<div class="nav">
-  
-    <div class="nav-item-prev">
-      <a 
-        href="/2024/06/21/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-beautifulsoup%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">python爬虫系列:beautifulsoup爬虫与线程池 </div>
-          
         </div>
-      </a>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> kaze主题配置建议</li>
+        <li><strong>作者:</strong> 西门啸雪</li>
+        <li><strong>创建于
+                :</strong> 2024-06-21 10:58:53</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2024-08-11 20:56:34
+            </li>
+        
+        <li>
+            <strong>链接:</strong> http://aurobreeze.top/2024/06/21/kaze配置建议/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/kaze/">#kaze</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/06/21/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-beautifulsoup%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">python爬虫系列:beautifulsoup爬虫与线程池</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/06/21/hexo%E9%83%A8%E5%88%86%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">hexo部分问题解决</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
     </div>
-  
-  
-    <div class="nav-item-next">
-      <a 
-        href="/2024/06/21/hexo%E9%83%A8%E5%88%86%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" 
-        class="nav-link">
-        <div>
-          <div class="nav-label">下一篇</div>
-          
-            <div class="nav-title">hexo部分问题解决 </div>
-          
-        </div>
-        <i class="iconfont icon-right nav-next-icon"></i>
-      </a>
-    </div>
-  
-</div>
+    
 
-  <div 
-    class="card card-content comment-card" 
-    style="margin-top: 16px;">
-    <div class="comment-card-title">评论</div>
-    
-  <div id="vcomments"></div>
-  
-  <script>
-    loadScript("//unpkg.com/valine/dist/Valine.min.js");
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-      new Valine({
-        el: '#vcomments',
-        appId: 'tRyzSH5lHX0I5brThoqaOrxx-gzGzoHsz',
-        appKey: 'ZQpppITbmXCyEPCotughfXEJ',
-        placeholder: 'Just go go',
-        path: window.location.pathname,
-        avatar: 'mp',
-        meta: ["nick","mail","link"],
-        pageSize: '10',
-        lang: '',
-        visitor: 'true',
-        highlight: true,
-        recordIP: true,
         
-        
-        
-        enableQQ: 'true',
-        requiredFields: ["nick","mail"],
-      });
-    };
-  </script>
-
-  </div>
-
-<div 
-  class="card card-content toc-card" 
-  id="mobiletoc">
-  <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#kaze%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-text">kaze主题配置建议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BA%E4%B8%AD%E6%96%87%E9%A1%B5%E9%9D%A2"><span class="toc-text">修改为中文页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="toc-text">删除不必要的页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kaze%E4%B8%BB%E9%A2%98%E7%9A%84-config-yml%E9%85%8D%E7%BD%AE"><span class="toc-text">kaze主题的_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">博客文章的配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
-</div>
-            </main>
-            <aside class="right-column">
-              <div class="sticky-widescreen">
-  
-  
-    <article class="card card-content toc-card">
-      <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#kaze%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-text">kaze主题配置建议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BA%E4%B8%AD%E6%96%87%E9%A1%B5%E9%9D%A2"><span class="toc-text">修改为中文页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="toc-text">删除不必要的页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kaze%E4%B8%BB%E9%A2%98%E7%9A%84-config-yml%E9%85%8D%E7%BD%AE"><span class="toc-text">kaze主题的_config.yml配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">博客文章的配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
-    </article>
-  
-  
-  <article class="card card-content">
-    <div class="recent-posts-card">
-  <div class="recent-posts-header">
-    <i 
-      class="iconfont icon-wenzhang_huaban" 
-      style="padding-right: 2px;">
-    </i>最近文章
-  </div>
-  <div class="recent-posts-list">
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-07-29</div>
-        <a href="/2024/07/29/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA/"><div class="recent-posts-item-content">python爬虫系列-JS逆向网易云评论</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-07-09</div>
-        <a href="/2024/07/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"><div class="recent-posts-item-content">排序算法</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-07-08</div>
-        <a href="/2024/07/08/pywifi%E7%A0%B4%E8%A7%A3WiFi%E5%AF%86%E7%A0%81%E7%A4%BA%E4%BE%8B/"><div class="recent-posts-item-content">pywifi破解WiFi密码示例</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-06-21</div>
-        <a href="/2024/06/21/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-beautifulsoup%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/"><div class="recent-posts-item-content">python爬虫系列:beautifulsoup爬虫与线程池</div></a>
-      </div>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-            </aside>
-          </div>
-        </div>
-      </div>
-    </div>
-     
-    <footer class="footer">
-  <div class="footer-container">
-    <div>
-      <div class="footer-dsc">
-        <span>
-          Copyright ©
-          
-            2020
-          
-          
-                - 
-                2024
-          
-        </span>
-        &nbsp;
-        <a 
-          href="/" 
-          class="footer-link">
-          AuroBreeze
-        </a>
-      </div>
-    </div>
-
-    
-      <div class="footer-dsc">
-        
-          Powered by
-          <a 
-            href="https://hexo.io/" 
-            class="footer-link" 
-            target="_blank" 
-            rel="nofollow noopener noreferrer">
-            &nbsp;Hexo
-          </a>
-        
-        
-          <span>&nbsp;|&nbsp;</span>
-        
-        
-          Theme -
-          <a 
-            href="https://github.com/theme-kaze" 
-            class="footer-link" 
-            target="_blank"
-            rel="nofollow noopener noreferrer">
-            &nbsp;Kaze
-          </a>
-        
-      </div>
-    
-    
-    
-    
-</footer>
- 
-    
-  <a 
-    role="button" 
-    id="scrollbutton" 
-    class="basebutton" 
-    aria-label="回到顶部">
-    <i class="iconfont icon-arrowleft button-icon"></i>
-  </a>
-
-<a 
-  role="button" 
-  id="menubutton"
-  aria-label="menu button"
-  class="basebutton">
-  <i class="iconfont icon-menu button-icon"></i>
-</a>
-<a 
-  role="button" 
-  id="popbutton" 
-  class="basebutton" 
-  aria-label="控制中心">
-  <i class="iconfont icon-expand button-icon"></i>
-</a>
-<a 
-  role="button" 
-  id="darkbutton" 
-  class="basebutton darkwidget" 
-  aria-label="夜色模式">
-  <i class="iconfont icon-weather button-icon"></i>
-</a>
-<a 
-  role="button" 
-  id="searchbutton" 
-  class="basebutton searchwidget" 
-  aria-label="搜索">
-  <i class="iconfont icon-search button-icon"></i>
-</a> 
-     
-     
-     
-      <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img')
-    var i
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a')
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
-      wrapper.setAttribute('aria-label', 'illustration')
-      wrapper.style.cssText =
-        'width: 100%; display: flex; justify-content: center;'
-      if (img[i].alt) wrapper.dataset.caption = img[i].alt
-      wrapper.dataset.nolink = true
-      img[i].before(wrapper)
-      wrapper.append(img[i])
-      var divWrap = document.createElement('div')
-      divWrap.classList.add('gallery')
-      wrapper.before(divWrap)
-      divWrap.append(wrapper)
-    }
-    baguetteBox.run('.gallery')
-  }
-</script>
-<script>
-  loadScript(
-    "/js/lib/lightbox/baguetteBox.min.js",
-    addImgLayout
-  )
-</script>
- 
-     
-     
-    <script src="/js/main.js"></script> 
-     
-    
-      <script>
-        var addLazyload = function () {
-          var observer = lozad('.lozad', {
-            load: function (el) {
-              el.srcset = el.getAttribute('data-src')
-            },
-            loaded: function (el) {
-              el.classList.add('loaded')
-            },
-          })
-          observer.observe()
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'ximenxiaoxue/new_blog_comment',
+                'data-repo-id': 'R_kgDOMiDymw# Github repository id',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMiDym84Chisb',
+                'data-mapping': 'title',
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'not-lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
         }
-      </script>
-      <script>
-        loadScript('/js/lib/lozad.min.js', addLazyload)
-      </script>
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
     
-    <script src="//instant.page/5.1.0" type="module"
-      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+</div>
+
+            </div>
+        
+    </div>
+
     
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">kaze主题配置建议</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BA%E4%B8%AD%E6%96%87%E9%A1%B5%E9%9D%A2"><span class="nav-text">修改为中文页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="nav-text">删除不必要的页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kaze%E4%B8%BB%E9%A2%98%E7%9A%84-config-yml%E9%85%8D%E7%BD%AE"><span class="nav-text">kaze主题的_config.yml配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">博客文章的配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="nav-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a>
+
+    </div>
+</div>
+        </div>
     
-      <script>
-        setTimeout(() => {localSearch("search.json")}, 0)
-      </script>
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">西门啸雪</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共 7 篇文章
+                    </span>
+                    
+                        <span>
+                            共 21.7k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
     
-  </body>
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
 </html>

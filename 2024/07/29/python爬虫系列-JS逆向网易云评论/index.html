@@ -1,575 +1,983 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-  <meta charset="UTF-8">
-  <meta 
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <meta 
-    http-equiv="X-UA-Compatible" 
-    content="ie=edge">
-  <meta 
-    name="theme-color" 
-    content="#fff" 
-    id="theme-color">
-  <meta 
-    name="description" 
-    content="Hexo">
-  <link 
-    rel="icon" 
-    href="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg">
-  <title>python爬虫系列-JS逆向网易云评论</title>
-  
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
     
-      <meta 
-        property="og:title" 
-        content="python爬虫系列-JS逆向网易云评论">
+    <meta name="author" content="西门啸雪">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/07/29/python爬虫系列-js逆向网易云评论/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="python代码下载所需要的库 12pip install requestspip install pycryptodome#实现AES加密   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859import requestsimp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫系列-JS逆向网易云评论">
+<meta property="og:url" content="http://example.com/2024/07/29/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="python代码下载所需要的库 12pip install requestspip install pycryptodome#实现AES加密   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859import requestsimp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://t.tutu.to/img/BU8pw">
+<meta property="og:image" content="https://t.tutu.to/img/BUBXo">
+<meta property="og:image" content="https://t.tutu.to/img/BUUxI">
+<meta property="og:image" content="https://t.tutu.to/img/BU0li">
+<meta property="og:image" content="https://t.tutu.to/img/BU9tR">
+<meta property="og:image" content="https://t.tutu.to/img/BUaaz">
+<meta property="og:image" content="https://t.tutu.to/img/BUh6e">
+<meta property="og:image" content="https://t.tutu.to/img/BUCyk">
+<meta property="og:image" content="https://t.tutu.to/img/BUNUg">
+<meta property="og:image" content="https://t.tutu.to/img/BUPMM">
+<meta property="og:image" content="https://t.tutu.to/img/BUlZm">
+<meta property="og:image" content="https://t.tutu.to/img/BU7xX">
+<meta property="og:image" content="https://t.tutu.to/img/BUZZw">
+<meta property="og:image" content="https://t.tutu.to/img/BUr4J">
+<meta property="og:image" content="https://t.tutu.to/img/BUzCR">
+<meta property="og:image" content="https://t.tutu.to/img/BU3Fz">
+<meta property="og:image" content="https://t.tutu.to/img/BUQze">
+<meta property="og:image" content="https://t.tutu.to/img/BUi0k">
+<meta property="og:image" content="https://t.tutu.to/img/BUtug">
+<meta property="og:image" content="https://t.tutu.to/img/BU4GM">
+<meta property="og:image" content="https://t.tutu.to/img/BUYDX">
+<meta property="og:image" content="https://t.tutu.to/img/BkvCA">
+<meta property="og:image" content="https://t.tutu.to/img/Bk8z4">
+<meta property="og:image" content="https://t.tutu.to/img/Bk9v6">
+<meta property="og:image" content="https://t.tutu.to/img/BkP3n">
+<meta property="og:image" content="https://t.tutu.to/img/BkD5H">
+<meta property="og:image" content="http://example.com/blog_img/py_js_3/Snipaste_2024-07-29_17-32-34.png">
+<meta property="og:image" content="http://example.com/blog_img/py_js_3/Snipaste_2024-07-29_18-21-09.png">
+<meta property="og:image" content="http://example.com/blog_img/py_js_3/Snipaste_2024-07-29_18-23-22.png">
+<meta property="og:image" content="http://example.com/blog_img/py_js_3/Snipaste_2024-07-29_18-24-22.png">
+<meta property="og:image" content="http://example.com/blog_img/py_js_3/Snipaste_2024-07-29_18-26-08.png">
+<meta property="og:image" content="http://example.com/blog_img/py_js_3/Snipaste_2024-07-29_20-24-27.png">
+<meta property="article:published_time" content="2024-07-29T00:51:19.000Z">
+<meta property="article:modified_time" content="2024-08-11T12:56:44.338Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://t.tutu.to/img/BU8pw">
     
     
-      <meta 
-        property="og:url" 
-        content="https://ximenxiaoxue.github.io/2024/07/29/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA/index.html">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
     
-    
-      <meta 
-        property="og:img" 
-        content="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg">
-    
-    
-    
-      <meta 
-        property="og:type" 
-        content="article">
-      <meta 
-        property="og:article:published_time" 
-        content="2024-07-29">
-      <meta 
-        property="og:article:modified_time" 
-        content="2024-07-29">
-      <meta 
-        property="og:article:author" 
-        content="西门啸雪">
-      
+    <title>
         
-          <meta 
-            property="og:article:tag" 
-            content="爬虫">
+            python爬虫系列-JS逆向网易云评论 -
         
-      
+        AuroBreeze
+    </title>
+
     
-  
-  
-  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
-  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
-  <link rel="preload" href="/css/main.css" as="style" >
-  
-  <link rel="modulepreload" href="//instant.page/5.1.0">
-  
-  <link rel="stylesheet" href="/css/main.css">
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
-  
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
-  
-  
-  
-    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
-  
-  <script>
-    function loadScript(url, cb) {
-      var script = document.createElement('script');
-      script.src = url;
-      if (cb) script.onload = cb;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-    function loadCSS(href, data, attr) {
-      var sheet = document.createElement('link');
-      sheet.ref = 'stylesheet';
-      sheet.href = href;
-      sheet.dataset[data] = attr;
-      document.head.appendChild(sheet);
-    }
-    function changeCSS(cssFile, data, attr) {
-      var oldlink = document.querySelector(data);
-      var newlink = document.createElement("link");
-      newlink.setAttribute("rel", "stylesheet");
-      newlink.setAttribute("href", cssFile);
-      newlink.dataset.prism = attr;
-      document.head.replaceChild(newlink, oldlink);
-    }
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":false,"site_uv":false,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"AuroBreeze","subtitle":{"text":["等清风拂面,笑看人间"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":80,"backing_speed":80,"starting_delay":1000,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/ximenxiaoxue","instagram":null,"zhihu":null,"twitter":null,"email":"1732373074@aliyun.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Friends":{"icon":"fa-solid fa-link","path":"/links/"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/ximenxiaoxue","Blog":"https://aurobreeze.top"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"西门啸雪的小窝","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/10 12:00:00"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
   </script>
-  
     
-  
-  <script>
-    // control reverse button
-    var reverseDarkList = {
-      dark: 'light',
-      light: 'dark'
-    };
-    var themeColor = {
-      dark: '#1c1c1e',
-      light: '#fff'
-    }
-    // get the data of css prefers-color-scheme
-    var getCssMediaQuery = function() {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-    // reverse current darkmode setting function
-    var reverseDarkModeSetting = function() {
-      var setting = localStorage.getItem('user-color-scheme');
-      if(reverseDarkList[setting]) {
-        setting = reverseDarkList[setting];
-      } else if(setting === null) {
-        setting = reverseDarkList[getCssMediaQuery()];
-      } else {
-        return;
-      }
-      localStorage.setItem('user-color-scheme', setting);
-      return setting;
-    };
-    // apply current darkmode setting
-  </script>
-  
-    <script>
-      var setDarkmode = function(mode) {
-      var setting = mode || localStorage.getItem('user-color-scheme');
-      if(setting === getCssMediaQuery()) {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[setting];
-        document.getElementById('theme-color').dataset.mode = setting;
-      } else if(reverseDarkList[setting]) {
-        document.documentElement.setAttribute('data-user-color-scheme', setting);
-        document.getElementById('theme-color').content = themeColor[setting];
-        document.getElementById('theme-color').dataset.mode = setting;
-      } else {
-        document.documentElement.removeAttribute('data-user-color-scheme');
-        localStorage.removeItem('user-color-scheme');
-        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
-        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
-      }
-    };
-    setDarkmode();
-    </script>
-  
-  
-  
-    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
-    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
-  
-  
-    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
-  
-  
-  
-  
-  
+    <!--- Fontawesome Part-->
     
-    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
-  
-  
-  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-  <script>LA.init({id:"3JKUPn8RBXzO8Bzv",ck:"3JKUPn8RBXzO8Bzv"})</script>
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
 <meta name="generator" content="Hexo 7.3.0"></head>
 
-  <body>
-    <div class="wrapper">
-       
-      <nav class="navbar">
-  <div class="navbar-logo">
-    <a class="navbar-logo-main" href="/">
-      
-        <img 
-          class="navbar-logo-img"
-          width="32"
-          height="32"
-          src="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg" 
-          alt="blog logo">
-      
-      <span class="navbar-logo-dsc">AuroBreeze</span>
-      </a>
-  </div>
-  <div class="navbar-menu">
+
+<body>
+<div class="progress-bar-container">
     
-      <a 
-        href="/" 
-        class="navbar-menu-item">
-        
-          首页
-        
-      </a>
+
     
-      <a 
-        href="/archives" 
-        class="navbar-menu-item">
-        
-          归档
-        
-      </a>
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
     
-      <a 
-        href="/tags" 
-        class="navbar-menu-item">
-        
-          标签
-        
-      </a>
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        AuroBreeze
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
     
-      <a 
-        href="/categories" 
-        class="navbar-menu-item">
-        
-          分类
-        
-      </a>
-    
-      <a 
-        href="/links" 
-        class="navbar-menu-item">
-        
-          友链
-        
-      </a>
-    
-    <button 
-      class="navbar-menu-item darknavbar navbar-menu-btn" 
-      aria-label="Toggle dark mode"
-      id="dark">
-      <i class="iconfont icon-weather"></i>
-    </button>
-    <button 
-      class="navbar-menu-item searchnavbar navbar-menu-btn" 
-      aria-label="Toggle search"
-      id="search">
-      <!-- <i 
-        class="iconfont icon-search" 
-        style="font-size: 1.2rem; font-weight: 400;">
-      </i> -->
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
-        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
-          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
-        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
-          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
-        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
-          d="M283.64 283.64L336 336"></path>
-      </svg>
-    </button>
-  </div>
-</nav> 
-      
-      <div 
-        id="local-search" 
-        style="display: none">
-        <input
-          class="navbar-menu-item"
-          id="search-input"
-          placeholder="请输入搜索内容..." />
-        <div id="search-content"></div>
-      </div>
-      
-      <div class="section-wrap">
-        <div class="container">
-          <div class="columns">
-            <aside class="left-column">
-              
-              <div class="card card-author">
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
                 
-  <img 
-    src="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg" 
-    class="author-img"
-    width="88"
-    height="88"
-    alt="author avatar">
-
-<p class="author-name">西门啸雪</p>
-<p class="author-description">我既从迷雾中走出，便留一地脚印。这是我的爱发电主页，非常感谢支持：https://afdian.net/a/AuroraBreeze</p>
-<div class="author-message">
-  <a 
-    class="author-posts-count" 
-    href="/archives">
-    <span>7</span>
-    <span>文章</span>
-  </a>
-  <a 
-    class="author-categories-count" 
-    href="/categories">
-    <span>3</span>
-    <span>分类</span>
-  </a>
-  <a 
-    class="author-tags-count" 
-    href="/tags">
-    <span>5</span>
-    <span>标签</span>
-  </a>
-</div>
-
-  <div class="author-card-society">
-    
-      <div class="author-card-society-icon">
-        <a target="_blank" rel="noopener" href="https://www.bilibili.com/">
-          <i class="iconfont icon-bilibili society-icon"></i>
-        </a>
-      </div>
-    
-  </div>
-
-              </div>
-               <div class="sticky-tablet">
-  
-  
-    <article class="display-when-two-columns spacer">
-      <div class="card card-content toc-card">
-        <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA"><span class="toc-text">python爬虫系列-JS逆向网易云评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BB%A3%E7%A0%81"><span class="toc-text">python代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-%E5%88%86%E6%9E%90"><span class="toc-text">代码:分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-JS%E9%80%86%E5%90%91%E5%88%86%E6%9E%90"><span class="toc-text">代码:JS逆向分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">代码:加密过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-python%E5%AE%9E%E7%8E%B0%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-text">代码:python实现解密过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
-      </div>
-    </article>
-  
-  
-  <article class="card card-content categories-widget">
-    <div class="categories-card">
-  <div class="categories-header">
-    <i 
-      class="iconfont icon-fenlei" 
-      style="padding-right: 2px;">
-    </i>分类
-  </div>
-  <div class="categories-list">
-    
-      <a href="/categories/hexo/">
-        <div class="categories-list-item">
-          hexo
-          <span class="categories-list-item-badge">2</span>
+                AuroBreeze
+                
+            </a>
         </div>
-      </a>
-    
-      <a href="/categories/python/">
-        <div class="categories-list-item">
-          python
-          <span class="categories-list-item-badge">4</span>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/links/"
+                                        >
+                                    <i class="fa-solid fa-link fa-fw"></i>
+                                    友情链接
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/ximenxiaoxue">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://aurobreeze.top">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
         </div>
-      </a>
-    
-      <a href="/categories/%E7%AE%97%E6%B3%95/">
-        <div class="categories-list-item">
-          算法
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
-  </div>
-</div>
-  </article>
-  
-  <article class="card card-content tags-widget">
-    <div class="tags-card">
-  <div class="tags-header">
-    <i 
-      class="iconfont icon-biaoqian" 
-      style="padding-right: 2px;">
-    </i>热门标签
-  </div>
-  <div class="tags-list">
-    
-      <a 
-        href="/tags/%E7%88%AC%E8%99%AB/" 
-        title="爬虫">
-        <div class="tags-list-item">爬虫</div>
-      </a>
-    
-      <a 
-        href="/tags/%E7%AE%97%E6%B3%95/" 
-        title="算法">
-        <div class="tags-list-item">算法</div>
-      </a>
-    
-      <a 
-        href="/tags/pywifi/" 
-        title="pywifi">
-        <div class="tags-list-item">pywifi</div>
-      </a>
-    
-      <a 
-        href="/tags/kaze/" 
-        title="kaze">
-        <div class="tags-list-item">kaze</div>
-      </a>
-    
-      <a 
-        href="/tags/hexo/" 
-        title="hexo">
-        <div class="tags-list-item">hexo</div>
-      </a>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-            </aside>
-            <main class="main-column">
-              
-<article class="card card-content">
-  <header>
-    <h1 class="post-title">
-      python爬虫系列-JS逆向网易云评论
-    </h1>
-  </header>
-  <div class="post-meta post-show-meta">
-    <time datetime="2024-07-29T00:51:19.000Z">
-      <i 
-        class="iconfont icon-calendar" 
-        style="margin-right: 2px;">
-      </i>
-      <span>2024-07-29</span>
-    </time>
-    
-      <span class="dot"></span>
-      
-        <a 
-          href="/categories/python/" 
-          class="post-meta-link">
-          python
-        </a>
-      
-    
-    
-      <span class="dot"></span>
-      <span>4k 字</span>
-    
-  </div>
-  
-    <div 
-      class="post-meta post-show-meta" 
-      style="margin-top: -10px;">
-      <div style="display: flex; align-items: center;">
-        <i 
-          class="iconfont icon-biaoqian" 
-          style="margin-right: 2px; font-size: 1.15rem;">
-        </i>
-        
-          
-          <a 
-            href="/tags/%E7%88%AC%E8%99%AB/" 
-            class="post-meta-link">
-            爬虫
-          </a>
-        
-      </div>
     </div>
-  
-  </header>
-  <div 
-    id="section" 
-    class="post-content">
-    <h1 id="python爬虫系列-JS逆向网易云评论"><a href="#python爬虫系列-JS逆向网易云评论" class="headerlink" title="python爬虫系列-JS逆向网易云评论"></a>python爬虫系列-JS逆向网易云评论</h1><h2 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h2><p><strong>下载所需要的库</strong></p>
-<pre class="highlight"><code class="hljs python">pip install requests<br>pip install pycryptodome<span class="hljs-comment">#实现AES加密</span><br></code></pre>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/links/"
+                        >
+                            <span>
+                                友情链接
+                            </span>
+                            
+                                <i class="fa-solid fa-link fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/ximenxiaoxue">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://aurobreeze.top">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
 
 
-<pre class="highlight"><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">from</span> Crypto.Util.Padding <span class="hljs-keyword">import</span> pad<br><span class="hljs-keyword">from</span> base64 <span class="hljs-keyword">import</span> b64encode<br><br>headers = &#123;<br>    <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&#x27;</span><br>&#125;<br>data = &#123;<br>        <span class="hljs-string">&quot;csrf_token&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;cursor&quot;</span>: <span class="hljs-string">&quot;-1&quot;</span>,<br>        <span class="hljs-string">&quot;offset&quot;</span>: <span class="hljs-string">&quot;0&quot;</span>,<br>        <span class="hljs-string">&quot;orderType&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,<br>        <span class="hljs-string">&quot;pageSize&quot;</span>: <span class="hljs-string">&quot;20&quot;</span>,<br>        <span class="hljs-string">&quot;rid&quot;</span>: <span class="hljs-string">&quot;R_SO_4_2061978961&quot;</span>,<br>        <span class="hljs-string">&quot;threadId&quot;</span>: <span class="hljs-string">&quot;R_SO_4_2061978961&quot;</span><br>    &#125;<br>f = <span class="hljs-string">&quot;00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7&quot;</span><br>e = <span class="hljs-string">&#x27;010001&#x27;</span><br>g = <span class="hljs-string">&#x27;0CoJUm6Qyw8W8jud&#x27;</span><br>i = <span class="hljs-string">&quot;ipvDWl7KgbnVS7Ot&quot;</span><br>url = <span class="hljs-string">&quot;https://music.163.com/weapi/comment/resource/comments/get?csrf_token=&quot;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_encSecKey</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;d25ce6c769e3acd5a638ef7abdd7c64e2dc3e848f6bfac507cd70ef7f45b16224aebb45a901b4660fe1ad4d36c4916432ef9e11db41c72269d3ae23e0515855a019d962b76c79dfd3b839c2653b7444757915d614ca822b20602ba99b4472a43bb62059ee6afcc241f9be7547ba96e3829651589288743a31548b9324a12dc07&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_params</span>(<span class="hljs-params">data</span>):<span class="hljs-comment">#默认收到的是字符串</span><br>    first =enc_params(data,g)<br>    second = enc_params(first,i)<br>    <span class="hljs-keyword">return</span> second<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">enc_params</span>(<span class="hljs-params">data, key</span>):<br>    iv = <span class="hljs-string">b&#x27;0102030405060708&#x27;</span>  <span class="hljs-comment"># IV 应该是一个字节序列</span><br>    key = key.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)  <span class="hljs-comment"># 确保 key 是字节序列</span><br>    aes = AES.new(key=key, mode=AES.MODE_CBC, IV=iv)  <span class="hljs-comment"># 创建加密器对象</span><br><br>    <span class="hljs-comment"># 填充数据到16字节边界</span><br>    padded_data = pad(data.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>), AES.block_size)<br><br>    <span class="hljs-comment"># 加密填充后的数据</span><br>    encrypted_data = aes.encrypt(padded_data)<br><br>    <span class="hljs-comment"># 返回加密后的数据的 Base64 编码字符串</span><br>    <span class="hljs-keyword">return</span> b64encode(encrypted_data).decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br><br>data=&#123;<br>    <span class="hljs-string">&quot;params&quot;</span>: get_params(json.dumps(data)),<span class="hljs-comment">#转化为字符串</span><br>    <span class="hljs-string">&quot;encSecKey&quot;</span>:get_encSecKey()<br>&#125;<br>res = requests.post(url, headers=headers, data=data).json()<br><br>content_list = res[<span class="hljs-string">&#x27;data&#x27;</span>][<span class="hljs-string">&quot;hotComments&quot;</span>]<br><span class="hljs-keyword">for</span> content <span class="hljs-keyword">in</span> content_list:<br>    <span class="hljs-built_in">print</span>(content[<span class="hljs-string">&#x27;content&#x27;</span>])<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;--&quot;</span> * <span class="hljs-number">30</span>)<br><br><br></code></pre>
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">python爬虫系列-JS逆向网易云评论</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="http://imgos.cn/2024/07/27/66a49edd1a14f.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">西门啸雪</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-29 08:51:19</span>
+        <span class="mobile">2024-07-29 08:51:19</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-08-11 20:56:44</span>
+            <span class="mobile">2024-08-11 20:56:44</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/python/">python</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>16 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h2><p><strong>下载所需要的库</strong></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br><span class="line">pip install pycryptodome<span class="comment">#实现AES加密</span></span><br></pre></td></tr></table></figure></div>
+
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad</span><br><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64encode</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">        <span class="string">&quot;csrf_token&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;cursor&quot;</span>: <span class="string">&quot;-1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;offset&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;orderType&quot;</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;pageSize&quot;</span>: <span class="string">&quot;20&quot;</span>,</span><br><span class="line">        <span class="string">&quot;rid&quot;</span>: <span class="string">&quot;R_SO_4_2061978961&quot;</span>,</span><br><span class="line">        <span class="string">&quot;threadId&quot;</span>: <span class="string">&quot;R_SO_4_2061978961&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">f = <span class="string">&quot;00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7&quot;</span></span><br><span class="line">e = <span class="string">&#x27;010001&#x27;</span></span><br><span class="line">g = <span class="string">&#x27;0CoJUm6Qyw8W8jud&#x27;</span></span><br><span class="line">i = <span class="string">&quot;ipvDWl7KgbnVS7Ot&quot;</span></span><br><span class="line">url = <span class="string">&quot;https://music.163.com/weapi/comment/resource/comments/get?csrf_token=&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_encSecKey</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;d25ce6c769e3acd5a638ef7abdd7c64e2dc3e848f6bfac507cd70ef7f45b16224aebb45a901b4660fe1ad4d36c4916432ef9e11db41c72269d3ae23e0515855a019d962b76c79dfd3b839c2653b7444757915d614ca822b20602ba99b4472a43bb62059ee6afcc241f9be7547ba96e3829651589288743a31548b9324a12dc07&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_params</span>(<span class="params">data</span>):<span class="comment">#默认收到的是字符串</span></span><br><span class="line">    first =enc_params(data,g)</span><br><span class="line">    second = enc_params(first,i)</span><br><span class="line">    <span class="keyword">return</span> second</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">enc_params</span>(<span class="params">data, key</span>):</span><br><span class="line">    iv = <span class="string">b&#x27;0102030405060708&#x27;</span>  <span class="comment"># IV 应该是一个字节序列</span></span><br><span class="line">    key = key.encode(<span class="string">&#x27;utf-8&#x27;</span>)  <span class="comment"># 确保 key 是字节序列</span></span><br><span class="line">    aes = AES.new(key=key, mode=AES.MODE_CBC, IV=iv)  <span class="comment"># 创建加密器对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 填充数据到16字节边界</span></span><br><span class="line">    padded_data = pad(data.encode(<span class="string">&#x27;utf-8&#x27;</span>), AES.block_size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加密填充后的数据</span></span><br><span class="line">    encrypted_data = aes.encrypt(padded_data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回加密后的数据的 Base64 编码字符串</span></span><br><span class="line">    <span class="keyword">return</span> b64encode(encrypted_data).decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">data=&#123;</span><br><span class="line">    <span class="string">&quot;params&quot;</span>: get_params(json.dumps(data)),<span class="comment">#转化为字符串</span></span><br><span class="line">    <span class="string">&quot;encSecKey&quot;</span>:get_encSecKey()</span><br><span class="line">&#125;</span><br><span class="line">res = requests.post(url, headers=headers, data=data).json()</span><br><span class="line"></span><br><span class="line">content_list = res[<span class="string">&#x27;data&#x27;</span>][<span class="string">&quot;hotComments&quot;</span>]</span><br><span class="line"><span class="keyword">for</span> content <span class="keyword">in</span> content_list:</span><br><span class="line">    <span class="built_in">print</span>(content[<span class="string">&#x27;content&#x27;</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;--&quot;</span> * <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><hr>
 <p>首先，我们需要安装一些依赖库，这里我们需要用到<code>requests</code>和<code>pycryptodome</code>两个库。</p>
-<pre class="highlight"><code class="hljs python">pip install requests<br>pip install pycryptodome<br></code></pre>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure></div>
 
 <p>使用requests进行网络请求，使用pycryptodome进行加密解密。</p>
 <hr>
 <h3 id="代码-分析"><a href="#代码-分析" class="headerlink" title="代码:分析"></a>代码:分析</h3><p>这次我们的目标是获取相关歌曲的评论</p>
-<p>我们这次选择的网址为：<a target="_blank" rel="noopener" href="https://music.163.com/#/song?id=2061978961">https://music.163.com/#/song?id=2061978961</a></p>
+<p>我们这次选择的网址为：<a class="link"   target="_blank" rel="noopener" href="https://music.163.com/#/song?id=2061978961" >https://music.163.com/#/song?id=2061978961 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>我们还是和之前一样先去看网站的结构，看看我们要爬取的评论是不是在网页源代码里面</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BU8pw" class="lozad post-image"src="https://t.tutu.to/img/BU8pw"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BU8pw"
+                     
+                ></p>
 <p>我们发现在这个页面代码里面，可是我们如果去用<code>requests</code>库直接获取的时候，就会发现，我们什么也获取不到，因为网易云的评论是通过<code>AJAX</code>请求获取的。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUBXo" class="lozad post-image"src="https://t.tutu.to/img/BUBXo"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUBXo"
+                     
+                ></p>
 <p>我们在看到页面源代码后按<code>ctrl+F</code>搜索<code>明年</code>这个刚才我们看到的关键字，但是什么也没有搜索出来，说明评论并不是在源代码里面。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUUxI" class="lozad post-image"src="https://t.tutu.to/img/BUUxI"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUUxI"
+                     
+                ></p>
 <p>这样我们就只能去翻网易云的网络请求，看看这里有没有评论的相关信息，大家可以自己去每个都翻一下，找找，我们这里就不演示了，直接给大家展示出来。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BU0li" class="lozad post-image"src="https://t.tutu.to/img/BU0li"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BU0li"
+                     
+                ></p>
 <p>我们可以看到，我们需要爬取的评论都在这个网络请求里面。</p>
 <p>这时候我们可能就在想，既然在这里面，那我直接找到url，直接获取不就行了吗？</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BU9tR" class="lozad post-image"src="https://t.tutu.to/img/BU9tR"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BU9tR"
+                     
+                ></p>
 <p>可是，你看这<code>url</code>里面有个<code>csrf_token</code>，我感觉总有一些不对劲。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUaaz" class="lozad post-image"src="https://t.tutu.to/img/BUaaz"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUaaz"
+                     
+                ></p>
 <p>我们看，我们这样是什么东西都获取不到的。</p>
 <p><code>csrf_token</code>是需要参数的，我们需要获取到这个参数才能获取到评论。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUh6e" class="lozad post-image"src="https://t.tutu.to/img/BUh6e"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUh6e"
+                     
+                ></p>
 <p>也就是说，我们需要获取到<code>params</code>和<code>encSecKey</code>这两个参数才能获取到评论。</p>
 <hr>
 <h3 id="代码-JS逆向分析"><a href="#代码-JS逆向分析" class="headerlink" title="代码:JS逆向分析"></a>代码:JS逆向分析</h3><p>我们当前看到的<code>params</code>和<code>encSecKey</code>是通过<code>JS</code>加密的，我们需要去找哪里的<code>JS</code>代码进行了加密。</p>
 <p>找<code>js</code>我们就去<strong>发起程序</strong>中找。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUCyk" class="lozad post-image"src="https://t.tutu.to/img/BUCyk"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUNUg" class="lozad post-image"src="https://t.tutu.to/img/BUNUg"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUPMM" class="lozad post-image"src="https://t.tutu.to/img/BUPMM"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUCyk"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUNUg"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUPMM"
+                     
+                ></p>
 <p>我们直接从这里点进去看，就可以看到js加密的一步一步的过程。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUlZm" class="lozad post-image"src="https://t.tutu.to/img/BUlZm"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUlZm"
+                     
+                ></p>
 <p>图中加断点的地方就是最后把请求发送过来的JS，我们再看右侧的侧边栏。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BU7xX" class="lozad post-image"src="https://t.tutu.to/img/BU7xX"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BU7xX"
+                     
+                ></p>
 <p>在这里，我们要找的<code>params</code>还是被加密的了，我们要先找到没有被加密的堆栈，我们就在红框下面一个一个的往下点，关注右边的侧边栏，直到我们看到<code>params</code>没有被加密。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUZZw" class="lozad post-image"src="https://t.tutu.to/img/BUZZw"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUr4J" class="lozad post-image"src="https://t.tutu.to/img/BUr4J"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUzCR" class="lozad post-image"src="https://t.tutu.to/img/BUzCR"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BU3Fz" class="lozad post-image"src="https://t.tutu.to/img/BU3Fz"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUQze" class="lozad post-image"src="https://t.tutu.to/img/BUQze"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUZZw"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUr4J"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUzCR"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BU3Fz"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUQze"
+                     
+                ></p>
 <p>**这个时候，<code>params</code>还是加密的我们继续向下面找，继续点击堆栈的下一个程序。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUi0k" class="lozad post-image"src="https://t.tutu.to/img/BUi0k"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUi0k"
+                     
+                ></p>
 <blockquote>
 <p><strong>接下来重点就要来了</strong></p>
 </blockquote>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUtug" class="lozad post-image"src="https://t.tutu.to/img/BUtug"></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BU4GM" class="lozad post-image"src="https://t.tutu.to/img/BU4GM"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUtug"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BU4GM"
+                     
+                ></p>
 <blockquote>
 <p>这两张图片我们可以看到，在<code>tox.be0x</code>这个堆栈下面的<strong>匿名</strong>程序中，直接就没有了<code>params</code>的数据，而在<code>tox.be0x</code>这个堆栈中，又有了<code>params</code>，可见，<code>params</code>的加密就发生在<code>tox.be0x</code>里面。</p>
 </blockquote>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BUYDX" class="lozad post-image"src="https://t.tutu.to/img/BUYDX"></p>
-<p>我们来仔细观察一下侧边栏，再回想一下我们要找的数据是什么?我们的url:”<a target="_blank" rel="noopener" href="https://music.163.com/weapi/comment/resource/comments/get?csrf_token=%22,%E9%9C%80%E8%A6%81%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%98%AF%60params%60,%E4%B8%80%E4%B8%AA%E6%98%AF%60encSecKey%60%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B8%AD%E5%B0%B1%E4%BC%9A%E5%8F%91%E7%8E%B0%60encSecKey%60%E7%9B%B4%E6%8E%A5%E7%BB%99%E4%BA%86%EF%BC%8C%E8%80%8C%60params%60%E7%9A%84%E6%95%B0%E6%8D%AE%E5%B0%B1%E6%98%AF%60encText%60%E8%BF%99%E4%B8%AA%E6%95%B0%E6%8D%AE%E3%80%82">https://music.163.com/weapi/comment/resource/comments/get?csrf_token=&quot;,需要两个参数，一个是`params`,一个是`encSecKey`，我们在侧边栏中就会发现`encSecKey`直接给了，而`params`的数据就是`encText`这个数据。</a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BUYDX"
+                     
+                ></p>
+<p>我们来仔细观察一下侧边栏，再回想一下我们要找的数据是什么?我们的url:”<a class="link"   target="_blank" rel="noopener" href="https://music.163.com/weapi/comment/resource/comments/get?csrf_token=%22,%E9%9C%80%E8%A6%81%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%98%AF%60params%60,%E4%B8%80%E4%B8%AA%E6%98%AF%60encSecKey%60%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E4%BE%A7%E8%BE%B9%E6%A0%8F%E4%B8%AD%E5%B0%B1%E4%BC%9A%E5%8F%91%E7%8E%B0%60encSecKey%60%E7%9B%B4%E6%8E%A5%E7%BB%99%E4%BA%86%EF%BC%8C%E8%80%8C%60params%60%E7%9A%84%E6%95%B0%E6%8D%AE%E5%B0%B1%E6%98%AF%60encText%60%E8%BF%99%E4%B8%AA%E6%95%B0%E6%8D%AE%E3%80%82" >https://music.163.com/weapi/comment/resource/comments/get?csrf_token=&quot;,需要两个参数，一个是`params`,一个是`encSecKey`，我们在侧边栏中就会发现`encSecKey`直接给了，而`params`的数据就是`encText`这个数据。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>现在我们需要干的事情就是，把加密的过程给弄懂，然后咱们把<code>params</code>和<code>encSecKey</code>都<strong>手搓</strong>出来。</p>
 <p>我们来观察中间的代码。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BkvCA" class="lozad post-image"src="https://t.tutu.to/img/BkvCA"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BkvCA"
+                     
+                ></p>
 <p>在这里我们可以观察到<code>params</code>和<code>encSecKey</code>都是在<code>bvi6c</code>返回的json数据中获取的，我们可以在<code>bvi6c</code>上面打一下断电看看，数据的变化情况，在这里我就不展示了。我们可以清楚的看到是<code>bvi6c</code>这个函数进行了加密。</p>
 <p>大家也可以把下面的滑块往右滑动，看看<code>bvi6c</code>的数据，在上面的数据这种并没有关于<code>params</code>和<code>encSecKey</code>信息的变化，而到了<code>bvi6c</code>这个函数中，就出现了我们要找的<code>encText</code>和<code>encSecKey</code>了。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/Bk8z4" class="lozad post-image"src="https://t.tutu.to/img/Bk8z4"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/Bk8z4"
+                     
+                ></p>
 <p>所以，可以大胆推断，加密程序，一定是：</p>
-<pre class="highlight"><code class="hljs javascript"><span class="hljs-keyword">var</span> bVi6c = <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">asrsea</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(i0x), <span class="hljs-title function_">bse6Y</span>([<span class="hljs-string">&quot;流泪&quot;</span>, <span class="hljs-string">&quot;强&quot;</span>]), <span class="hljs-title function_">bse6Y</span>(<span class="hljs-title class_">Qu1</span>x.<span class="hljs-property">md</span>), <span class="hljs-title function_">bse6Y</span>([<span class="hljs-string">&quot;爱心&quot;</span>, <span class="hljs-string">&quot;女孩&quot;</span>, <span class="hljs-string">&quot;惊恐&quot;</span>, <span class="hljs-string">&quot;大笑&quot;</span>]));<br></code></pre>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bVi6c = <span class="variable language_">window</span>.<span class="title function_">asrsea</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(i0x), <span class="title function_">bse6Y</span>([<span class="string">&quot;流泪&quot;</span>, <span class="string">&quot;强&quot;</span>]), <span class="title function_">bse6Y</span>(<span class="title class_">Qu1</span>x.<span class="property">md</span>), <span class="title function_">bse6Y</span>([<span class="string">&quot;爱心&quot;</span>, <span class="string">&quot;女孩&quot;</span>, <span class="string">&quot;惊恐&quot;</span>, <span class="string">&quot;大笑&quot;</span>]));</span><br></pre></td></tr></table></figure></div>
 
 <p>我们先看里面的<strong>四个参数</strong>，首先是<code>JSON.stringify(i0x)</code>,在刚才的右边栏中，我们能找到<code>i0x</code>的数据,即：</p>
-<pre class="highlight"><code class="hljs javascript"><span class="hljs-attr">csrf_token</span>: <span class="hljs-string">&quot;&quot;</span>,<br><span class="hljs-attr">cursor</span>: <span class="hljs-string">&quot;-1&quot;</span>,<br><span class="hljs-attr">offset</span>: <span class="hljs-string">&quot;0&quot;</span>,<br><span class="hljs-attr">orderType</span>: <span class="hljs-string">&quot;1&quot;</span>,<br><span class="hljs-attr">pageSize</span>: <span class="hljs-string">&quot;20&quot;</span>,<br><span class="hljs-attr">rid</span>: <span class="hljs-string">&quot;R_SO_4_2061978961&quot;</span>,<br><span class="hljs-attr">threadId</span>: <span class="hljs-string">&quot;R_SO_4_2061978961&quot;</span><br></code></pre>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">csrf_token</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="attr">cursor</span>: <span class="string">&quot;-1&quot;</span>,</span><br><span class="line"><span class="attr">offset</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line"><span class="attr">orderType</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line"><span class="attr">pageSize</span>: <span class="string">&quot;20&quot;</span>,</span><br><span class="line"><span class="attr">rid</span>: <span class="string">&quot;R_SO_4_2061978961&quot;</span>,</span><br><span class="line"><span class="attr">threadId</span>: <span class="string">&quot;R_SO_4_2061978961&quot;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>在<code>js</code>中，<code>JSON.stringify(i0x)</code>用于将一个 JavaScript 对象或值转换成 <strong>JSON 字符串</strong>，那很好，我们的第一个参数就知道了。</p>
 <p>第二个参数<code>bse6Y([&quot;流泪&quot;, &quot;强&quot;])</code>，这，我们也看不出什么东西，在源代码中搜索也不会搜出什么东西，这个时候，我们也就需要发挥一下，控制台的作用了。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/Bk9v6" class="lozad post-image"src="https://t.tutu.to/img/Bk9v6"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/Bk9v6"
+                     
+                ></p>
 <p>我们在控制台输入<code>bse6Y([&quot;流泪&quot;, &quot;强&quot;])</code>，然后回车，我们就能看到<code>bse6Y([&quot;流泪&quot;, &quot;强&quot;])</code>的结果了，这也是一个固定的值，剩下的两个参数<code>bse6Y(Qu1x.md)</code>和<code>bse6Y([&quot;爱心&quot;, &quot;女孩&quot;, &quot;惊恐&quot;, &quot;大笑&quot;])</code>也一样，在控制台可以看到他们的参数，也是固定的。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BkP3n" class="lozad post-image"src="https://t.tutu.to/img/BkP3n"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BkP3n"
+                     
+                ></p>
 <p>这样，加密用的四个参数，我们就全拿到手了，接下来，我们去看加密的过程。</p>
 <hr>
 <h3 id="代码-加密过程分析"><a href="#代码-加密过程分析" class="headerlink" title="代码:加密过程分析"></a>代码:加密过程分析</h3><p>首先说明，这里设置的<strong>a,b,c,d的函数</strong>，以及传入的<strong>a,b,c,d的参数</strong>，大部分都是来混淆你的，函数就是函数，参数就是参数，大家要分清楚。</p>
 <p>在上面的源代码中，我们发现他是使用的<code>window.asrsea</code>这个函数进行的加密，所以，这是个啥函数，正常的<code>js</code>中可没有这个函数，这样，我们就只能去在页面源代码中搜索了，按<code>ctrl+F</code>搜索<code>window.asrsea</code>关键字，我们发现有<strong>两处</strong>使用了这个关键字，加密的地方算一次，那么第一次看来就是函数定义的地方了。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://t.tutu.to/img/BkD5H" class="lozad post-image"src="https://t.tutu.to/img/BkD5H"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://t.tutu.to/img/BkD5H"
+                     
+                ></p>
 <blockquote>
 <p>我们可以看到，<code>window.asrsea</code>函数就是<code>d</code>函数，他还想用<code>window.asrsea</code>这个名字混淆咱们。</p>
 </blockquote>
 <hr>
 <p>这样我们来分析<code>d</code>函数。</p>
-<pre class="highlight"><code class="hljs plaintext">var h = &#123;&#125;; //声明一个空对象 h<br>i = a(16);//这行代码调用了一个函数 a 并传入参数 16，生成一个16位的随机字符串<br>return h.encText = b(d, g)//将 b(d, g) 的结果赋值给 h.encText<br>h.encText = b(h.encText, i) //将 b(h.encText, i) 的结果赋值给 h.encText<br>h //最后返回对象 h<br></code></pre>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var h = &#123;&#125;; //声明一个空对象 h</span><br><span class="line">i = a(16);//这行代码调用了一个函数 a 并传入参数 16，生成一个16位的随机字符串</span><br><span class="line">return h.encText = b(d, g)//将 b(d, g) 的结果赋值给 h.encText</span><br><span class="line">h.encText = b(h.encText, i) //将 b(h.encText, i) 的结果赋值给 h.encText</span><br><span class="line">h //最后返回对象 h</span><br></pre></td></tr></table></figure></div>
 
 <p>在这里<code>b</code>函数调用了两次，第二次才是真正的<code>encText</code>。</p>
 <p>这个<code>return</code>语句，在这里并没有运行到这里就退出的作用。</p>
 <hr>
 <p>我们来看看<code>a</code>函数。</p>
-<pre class="highlight"><code class="hljs javascript">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span>(<span class="hljs-params">a</span>) &#123;<br>    <span class="hljs-keyword">var</span> d, e, b = <span class="hljs-string">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&quot;</span>, c = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">for</span> (d = <span class="hljs-number">0</span>; a &gt; d; d += <span class="hljs-number">1</span>)<br>        e = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * b.<span class="hljs-property">length</span>,<br>        e = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(e),<br>        c += b.<span class="hljs-title function_">charAt</span>(e);<br>    <span class="hljs-keyword">return</span> c<br>&#125;<br></code></pre>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">function</span> <span class="title function_">a</span>(<span class="params">a</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> d, e, b = <span class="string">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&quot;</span>, c = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (d = <span class="number">0</span>; a &gt; d; d += <span class="number">1</span>)</span><br><span class="line">        e = <span class="title class_">Math</span>.<span class="title function_">random</span>() * b.<span class="property">length</span>,</span><br><span class="line">        e = <span class="title class_">Math</span>.<span class="title function_">floor</span>(e),</span><br><span class="line">        c += b.<span class="title function_">charAt</span>(e);</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p>这个函数就是生成一个16位的随机字符串，我们可以看到，他是用<code>Math.random()</code>生成了一个随机数，然后用<code>Math.floor()</code>取整，然后用<code>charAt()</code>取出字符，然后拼接起来,最后把<code>c</code>返回，这个函数的作用就是生成一个随机字符串。</p>
 <p>所以，<code>i</code>是一个随机的字符串。</p>
 <hr>
 <p>按照<code>d</code>函数的逻辑，接下来就是<code>h.encText = b(d, g)</code>,这里调用了<code>b</code>函数，我们来看看<code>b</code>函数。</p>
-<pre class="highlight"><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">b</span>(<span class="hljs-params">a, b</span>) &#123;<br>    <span class="hljs-keyword">var</span> c = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(b)<br>      , d = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&quot;0102030405060708&quot;</span>)<br>      , e = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(a)<br>      , f = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">encrypt</span>(e, c, &#123;<br>        <span class="hljs-attr">iv</span>: d,<br>        <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span><br>    &#125;);<br>    <span class="hljs-keyword">return</span> f.<span class="hljs-title function_">toString</span>()<br>&#125;<br></code></pre>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">b</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(b)</span><br><span class="line">      , d = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="string">&quot;0102030405060708&quot;</span>)</span><br><span class="line">      , e = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(a)</span><br><span class="line">      , f = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(e, c, &#123;</span><br><span class="line">        <span class="attr">iv</span>: d,</span><br><span class="line">        <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> f.<span class="title function_">toString</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li>var c &#x3D; CryptoJS.enc.Utf8.parse(b)   &#x2F;&#x2F;将第二个参数 b 解码为 UTF-8 格式的字节数组，存储在变量 c 中。</li>
@@ -589,20 +997,25 @@
 </blockquote>
 <p>但是说实话，我们并不需要知道这么多(<strong>当然，你如果深入了解这个的话，能更好的帮助你写代码</strong>)。</p>
 <p>在这里的代码</p>
-<pre class="highlight"><code class="hljs javascript">f = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">encrypt</span>(e, c, &#123;<br>            <span class="hljs-attr">iv</span>: d,<br>            <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span><br>        &#125;)<br></code></pre>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(e, c, &#123;</span><br><span class="line">            <span class="attr">iv</span>: d,</span><br><span class="line">            <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span></span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></div>
 
 <blockquote>
 <p><code>e</code>为加密的<code>明文数据</code>,<code>c</code>为加密的<code>密钥</code>,<code>iv</code>为加密的<code>初始向量</code>，模式选择<code>CBC</code>。</p>
 </blockquote>
 <p><code>b</code>函数是由<code>d</code>函数调用的，<code>a</code>为传入的<strong>b函数</strong>的第一个参数，<strong>d函数</strong>传入<strong>b函数</strong>的第一个参数就是我们获取到的<code>JSON.stringify(i0x)</code>数据。</p>
-<pre class="highlight"><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">d</span>(<span class="hljs-params">d, e, f, g</span>) &#123;<br>        <span class="hljs-keyword">var</span> h = &#123;&#125;<br>          , i = <span class="hljs-title function_">a</span>(<span class="hljs-number">16</span>);<br>        <span class="hljs-keyword">return</span> h.<span class="hljs-property">encText</span> = <span class="hljs-title function_">b</span>(d, g),<br>        h.<span class="hljs-property">encText</span> = <span class="hljs-title function_">b</span>(h.<span class="hljs-property">encText</span>, i),<br>        h.<span class="hljs-property">encSecKey</span> = <span class="hljs-title function_">c</span>(i, e, f),<br>        h<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">b</span>(<span class="hljs-params">a, b</span>) &#123;<br>        <span class="hljs-keyword">var</span> c = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(b)<br>          , d = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&quot;0102030405060708&quot;</span>)<br>          , e = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(a)<br>          , f = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">encrypt</span>(e, c, &#123;<br>            <span class="hljs-attr">iv</span>: d,<br>            <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span><br>        &#125;);<br>        <span class="hljs-keyword">return</span> f.<span class="hljs-title function_">toString</span>()<br>    &#125;<br></code></pre>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">d</span>(<span class="params">d, e, f, g</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> h = &#123;&#125;</span><br><span class="line">          , i = <span class="title function_">a</span>(<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">return</span> h.<span class="property">encText</span> = <span class="title function_">b</span>(d, g),</span><br><span class="line">        h.<span class="property">encText</span> = <span class="title function_">b</span>(h.<span class="property">encText</span>, i),</span><br><span class="line">        h.<span class="property">encSecKey</span> = <span class="title function_">c</span>(i, e, f),</span><br><span class="line">        h</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">b</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> c = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(b)</span><br><span class="line">          , d = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="string">&quot;0102030405060708&quot;</span>)</span><br><span class="line">          , e = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(a)</span><br><span class="line">          , f = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(e, c, &#123;</span><br><span class="line">            <span class="attr">iv</span>: d,</span><br><span class="line">            <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span></span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> f.<span class="title function_">toString</span>()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 
 <p>单纯这样讲可能不太直白，大家来看图</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_17-32-34.png" class="lozad post-image"src="/../blog_img/py_js_3/Snipaste_2024-07-29_17-32-34.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_17-32-34.png"
+                     
+                ></p>
 <p>这样加密完后，用<code>toString()</code>方法转换成字符串。</p>
 <hr>
 <p>按照<code>d</code>函数的逻辑，接下来就是<code>h.encSecKey = c(i, e, f)</code>,这里调用了<code>c</code>函数，我们来看看<code>c</code>函数。</p>
-<pre class="highlight"><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">c</span>(<span class="hljs-params">a, b, c</span>) &#123;<br>    <span class="hljs-keyword">var</span> d, e;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">setMaxDigits</span>(<span class="hljs-number">131</span>),<br>    d = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RSAKeyPair</span>(b,<span class="hljs-string">&quot;&quot;</span>,c),<br>    e = <span class="hljs-title function_">encryptedString</span>(d, a)<br>&#125;<br></code></pre>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">c</span>(<span class="params">a, b, c</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> d, e;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">setMaxDigits</span>(<span class="number">131</span>),</span><br><span class="line">    d = <span class="keyword">new</span> <span class="title class_">RSAKeyPair</span>(b,<span class="string">&quot;&quot;</span>,c),</span><br><span class="line">    e = <span class="title function_">encryptedString</span>(d, a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p>但是，如果我们仔细看<code>d</code>函数的调用，我们就会发现一个，有趣的事情。</p>
 <p>在<code>d</code>函数中调用了<code>c</code>函数，并传入了三个值，第一个值是<code>i</code>，第二个值是<code>e</code>，第三个值是<code>f</code>。</p>
@@ -612,18 +1025,38 @@
 <li><code>f</code>：这个值是<code>bse6Y([&quot;爱心&quot;, &quot;女孩&quot;, &quot;惊恐&quot;, &quot;大笑&quot;])</code></li>
 </ol>
 <p><code>e</code>和<code>f</code>都是固定的值，那我们把<code>i</code>给固定住，那么<code>c</code>函数不就只返回一个固定的值了吗？大家可以在这个地方打个断点，看看<code>i</code>的值，并复制下来直接用，因为<code>c</code>函数还有其他更多函数的分析，我们就不展开了。</p>
-<p>先在这里打断点<br><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-21-09.png" class="lozad post-image"src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-21-09.png"></p>
+<p>先在这里打断点<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-21-09.png"
+                     
+                ></p>
 <p>直到右边栏出现这个，也就是我们要找的url</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-23-22.png" class="lozad post-image"src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-23-22.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-23-22.png"
+                     
+                ></p>
 <p>我们再回到<code>d</code>函数打断点</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-24-22.png" class="lozad post-image"src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-24-22.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-24-22.png"
+                     
+                ></p>
 <p>然后我们一步一步的运行，找到<code>i</code>以及由<code>i</code>生成的<code>encSecKey</code></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-26-08.png" class="lozad post-image"src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-26-08.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_18-26-08.png"
+                     
+                ></p>
 <p>把这两个复制下来。</p>
 <blockquote>
 <p>至此，我们已经分析完了加密过程，拿到了我们应该用到的参数，接下来我们就去python，实现代码的复原。</p>
 </blockquote>
-<h3 id="代码-python实现解密过程"><a href="#代码-python实现解密过程" class="headerlink" title="代码:python实现解密过程"></a>代码:python实现解密过程</h3><pre class="highlight"><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">from</span> Crypto.Util.Padding <span class="hljs-keyword">import</span> pad<br><span class="hljs-keyword">from</span> base64 <span class="hljs-keyword">import</span> b64encode<br><br><br>headers = &#123;<br>    <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&#x27;</span><br>&#125;<br>data = &#123;<br>        <span class="hljs-string">&quot;csrf_token&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;cursor&quot;</span>: <span class="hljs-string">&quot;-1&quot;</span>,<br>        <span class="hljs-string">&quot;offset&quot;</span>: <span class="hljs-string">&quot;0&quot;</span>,<br>        <span class="hljs-string">&quot;orderType&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,<br>        <span class="hljs-string">&quot;pageSize&quot;</span>: <span class="hljs-string">&quot;20&quot;</span>,<br>        <span class="hljs-string">&quot;rid&quot;</span>: <span class="hljs-string">&quot;R_SO_4_2061978961&quot;</span>,<br>        <span class="hljs-string">&quot;threadId&quot;</span>: <span class="hljs-string">&quot;R_SO_4_2061978961&quot;</span><br>    &#125;<br><br><span class="hljs-comment">#bse6Y(Qu1x.md)</span><br>f = <span class="hljs-string">&quot;00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7&quot;</span><br><br>e = <span class="hljs-string">&#x27;010001&#x27;</span><span class="hljs-comment">#bse6Y([&quot;流泪&quot;, &quot;强&quot;])</span><br>g = <span class="hljs-string">&#x27;0CoJUm6Qyw8W8jud&#x27;</span> <span class="hljs-comment">#bse6Y([&quot;爱心&quot;, &quot;女孩&quot;, &quot;惊恐&quot;, &quot;大笑&quot;])</span><br>i = <span class="hljs-string">&quot;dTq5gXUy86kvKfID&quot;</span><br>url = <span class="hljs-string">&quot;https://music.163.com/weapi/comment/resource/comments/get?csrf_token=&quot;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_encSecKey</span>():<span class="hljs-comment">#我们的i值已经固定，所以这里直接返回固定值</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;c56d5b52597656e3d4f0efbe1438679842b2ce4a858d24b66e5b6eb388373415843a38e16f79acddc959d81c4cc734a30ff690cb1e1c9ea611254c9302d1efbe78348f8d5fd3b0e17b3ab37e6c95e81ec87ec434b811c00446c06ca52b4102be7eae1b8c637a81c31f5ce876f16880fb4e5e62cc20adb7b854c707d6bcd9c742&quot;</span><br></code></pre>
+<h3 id="代码-python实现解密过程"><a href="#代码-python实现解密过程" class="headerlink" title="代码:python实现解密过程"></a>代码:python实现解密过程</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad</span><br><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64encode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">        <span class="string">&quot;csrf_token&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;cursor&quot;</span>: <span class="string">&quot;-1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;offset&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;orderType&quot;</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;pageSize&quot;</span>: <span class="string">&quot;20&quot;</span>,</span><br><span class="line">        <span class="string">&quot;rid&quot;</span>: <span class="string">&quot;R_SO_4_2061978961&quot;</span>,</span><br><span class="line">        <span class="string">&quot;threadId&quot;</span>: <span class="string">&quot;R_SO_4_2061978961&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#bse6Y(Qu1x.md)</span></span><br><span class="line">f = <span class="string">&quot;00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7&quot;</span></span><br><span class="line"></span><br><span class="line">e = <span class="string">&#x27;010001&#x27;</span><span class="comment">#bse6Y([&quot;流泪&quot;, &quot;强&quot;])</span></span><br><span class="line">g = <span class="string">&#x27;0CoJUm6Qyw8W8jud&#x27;</span> <span class="comment">#bse6Y([&quot;爱心&quot;, &quot;女孩&quot;, &quot;惊恐&quot;, &quot;大笑&quot;])</span></span><br><span class="line">i = <span class="string">&quot;dTq5gXUy86kvKfID&quot;</span></span><br><span class="line">url = <span class="string">&quot;https://music.163.com/weapi/comment/resource/comments/get?csrf_token=&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_encSecKey</span>():<span class="comment">#我们的i值已经固定，所以这里直接返回固定值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;c56d5b52597656e3d4f0efbe1438679842b2ce4a858d24b66e5b6eb388373415843a38e16f79acddc959d81c4cc734a30ff690cb1e1c9ea611254c9302d1efbe78348f8d5fd3b0e17b3ab37e6c95e81ec87ec434b811c00446c06ca52b4102be7eae1b8c637a81c31f5ce876f16880fb4e5e62cc20adb7b854c707d6bcd9c742&quot;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>首先导入需要的库，<code>requests</code>用于发送请求，<code>json</code>用于处理json数据，<code>AES</code>用于解密，<code>pad</code>用于填充，<code>b64encode</code>用于编码。</p>
 <p>详细说一下</p>
@@ -633,10 +1066,15 @@
 <li><code>b64encode</code>函数，用于编码，因为加密函数的输入要求是字节序列，所以需要将数据编码成字节序列,加密算法要用两次，在<code>js</code>的<code>d</code>函数中有体现。</li>
 <li><code>AES</code>库，用于加密。</li>
 </ul>
-<pre class="highlight"><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_params</span>(<span class="hljs-params">data</span>):<span class="hljs-comment">#默认收到的是字符串</span><br>    first =enc_params(data,g)<br>    second = enc_params(first,i)<br>    <span class="hljs-keyword">return</span> second<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">enc_params</span>(<span class="hljs-params">data, key</span>):<br>    iv = <span class="hljs-string">b&#x27;0102030405060708&#x27;</span>  <span class="hljs-comment"># IV 应该是一个字节序列</span><br>    key = key.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)  <span class="hljs-comment"># 确保 key 是字节序列</span><br>    aes = AES.new(key=key, mode=AES.MODE_CBC, IV=iv)  <span class="hljs-comment"># 创建加密器对象</span><br><br>    <span class="hljs-comment"># 填充数据到16字节边界</span><br>    padded_data = pad(data.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>), AES.block_size)<br><br>    <span class="hljs-comment"># 加密填充后的数据</span><br>    encrypted_data = aes.encrypt(padded_data)<br><br>    <span class="hljs-comment"># 返回加密后的数据的 Base64 编码字符串</span><br>    <span class="hljs-keyword">return</span> b64encode(encrypted_data).decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br></code></pre>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_params</span>(<span class="params">data</span>):<span class="comment">#默认收到的是字符串</span></span><br><span class="line">    first =enc_params(data,g)</span><br><span class="line">    second = enc_params(first,i)</span><br><span class="line">    <span class="keyword">return</span> second</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">enc_params</span>(<span class="params">data, key</span>):</span><br><span class="line">    iv = <span class="string">b&#x27;0102030405060708&#x27;</span>  <span class="comment"># IV 应该是一个字节序列</span></span><br><span class="line">    key = key.encode(<span class="string">&#x27;utf-8&#x27;</span>)  <span class="comment"># 确保 key 是字节序列</span></span><br><span class="line">    aes = AES.new(key=key, mode=AES.MODE_CBC, IV=iv)  <span class="comment"># 创建加密器对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 填充数据到16字节边界</span></span><br><span class="line">    padded_data = pad(data.encode(<span class="string">&#x27;utf-8&#x27;</span>), AES.block_size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加密填充后的数据</span></span><br><span class="line">    encrypted_data = aes.encrypt(padded_data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回加密后的数据的 Base64 编码字符串</span></span><br><span class="line">    <span class="keyword">return</span> b64encode(encrypted_data).decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
 
 <p><code>iv</code>是初始化向量，这个东西在刚才的js源码中</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_20-24-27.png" class="lozad post-image"src="/../blog_img/py_js_3/Snipaste_2024-07-29_20-24-27.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_js_3/Snipaste_2024-07-29_20-24-27.png"
+                     
+                ></p>
 <p>我们直接粘过来，这玩意是偏移量，具体干什么，大家有兴趣的可以去看看。</p>
 <p>有一点我们还需要注意，加密的数据必须是16的整数倍，所以我们需要对数据进行填充。</p>
 <p>例如，如果原始数据的长度是 14 字节，块大小是 16 字节，那么需要添加 2 个字节的填充。</p>
@@ -644,313 +1082,439 @@
 <p>到这里整个代码就讲解完成了</p>
 <hr>
 <h1 id="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"><a href="#如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！" class="headerlink" title="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"></a>如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</h1><blockquote>
-<p>爱发电地址:<a target="_blank" rel="noopener" href="https://afdian.com/a/AuroraBreeze">https://afdian.com/a/AuroraBreeze</a></p>
+<p>爱发电地址:<a class="link"   target="_blank" rel="noopener" href="https://afdian.com/a/AuroraBreeze" >https://afdian.com/a/AuroraBreeze <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </blockquote>
 
-  </div>
-  <div>
-    
-      <div 
-        class="post-note note-warning copyright" 
-        style="margin-top: 42px">
-        <p>
-          <span style="font-weight: bold;">作者：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="/about">
-            西门啸雪
-          </a>
-        </p>
-        <p>
-          <span style="font-weight: bold;">文章链接：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="https://ximenxiaoxue.github.io/2024/07/29/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA/">
-            https://ximenxiaoxue.github.io/2024/07/29/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA/
-          </a>
-        </p>
-        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
-      </div>
-    
-  </div>
-</article>
-<div class="nav">
-  
-  
-    <div class="nav-item-next">
-      <a 
-        href="/2024/07/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" 
-        class="nav-link">
-        <div>
-          <div class="nav-label">下一篇</div>
-          
-            <div class="nav-title">排序算法 </div>
-          
         </div>
-        <i class="iconfont icon-right nav-next-icon"></i>
-      </a>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> python爬虫系列-JS逆向网易云评论</li>
+        <li><strong>作者:</strong> 西门啸雪</li>
+        <li><strong>创建于
+                :</strong> 2024-07-29 08:51:19</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2024-08-11 20:56:44
+            </li>
+        
+        <li>
+            <strong>链接:</strong> http://aurobreeze.top/2024/07/29/python爬虫系列-JS逆向网易云评论/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/07/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">排序算法</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
     </div>
-  
-</div>
+    
 
-  <div 
-    class="card card-content comment-card" 
-    style="margin-top: 16px;">
-    <div class="comment-card-title">评论</div>
-    
-  <div id="vcomments"></div>
-  
-  <script>
-    loadScript("//unpkg.com/valine/dist/Valine.min.js");
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-      new Valine({
-        el: '#vcomments',
-        appId: 'tRyzSH5lHX0I5brThoqaOrxx-gzGzoHsz',
-        appKey: 'ZQpppITbmXCyEPCotughfXEJ',
-        placeholder: 'Just go go',
-        path: window.location.pathname,
-        avatar: 'mp',
-        meta: ["nick","mail","link"],
-        pageSize: '10',
-        lang: '',
-        visitor: 'true',
-        highlight: true,
-        recordIP: true,
         
-        
-        
-        enableQQ: 'true',
-        requiredFields: ["nick","mail"],
-      });
-    };
-  </script>
-
-  </div>
-
-<div 
-  class="card card-content toc-card" 
-  id="mobiletoc">
-  <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA"><span class="toc-text">python爬虫系列-JS逆向网易云评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BB%A3%E7%A0%81"><span class="toc-text">python代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-%E5%88%86%E6%9E%90"><span class="toc-text">代码:分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-JS%E9%80%86%E5%90%91%E5%88%86%E6%9E%90"><span class="toc-text">代码:JS逆向分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">代码:加密过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-python%E5%AE%9E%E7%8E%B0%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-text">代码:python实现解密过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
-</div>
-            </main>
-            <aside class="right-column">
-              <div class="sticky-widescreen">
-  
-  
-    <article class="card card-content toc-card">
-      <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA"><span class="toc-text">python爬虫系列-JS逆向网易云评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BB%A3%E7%A0%81"><span class="toc-text">python代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-%E5%88%86%E6%9E%90"><span class="toc-text">代码:分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-JS%E9%80%86%E5%90%91%E5%88%86%E6%9E%90"><span class="toc-text">代码:JS逆向分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">代码:加密过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-python%E5%AE%9E%E7%8E%B0%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-text">代码:python实现解密过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="toc-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a></li></ol>
-    </article>
-  
-  
-  <article class="card card-content">
-    <div class="recent-posts-card">
-  <div class="recent-posts-header">
-    <i 
-      class="iconfont icon-wenzhang_huaban" 
-      style="padding-right: 2px;">
-    </i>最近文章
-  </div>
-  <div class="recent-posts-list">
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-07-29</div>
-        <a href="/2024/07/29/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-JS%E9%80%86%E5%90%91%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%84%E8%AE%BA/"><div class="recent-posts-item-content">python爬虫系列-JS逆向网易云评论</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-07-09</div>
-        <a href="/2024/07/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"><div class="recent-posts-item-content">排序算法</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-07-08</div>
-        <a href="/2024/07/08/pywifi%E7%A0%B4%E8%A7%A3WiFi%E5%AF%86%E7%A0%81%E7%A4%BA%E4%BE%8B/"><div class="recent-posts-item-content">pywifi破解WiFi密码示例</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2024-06-21</div>
-        <a href="/2024/06/21/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-beautifulsoup%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/"><div class="recent-posts-item-content">python爬虫系列:beautifulsoup爬虫与线程池</div></a>
-      </div>
-    
-  </div>
-</div>
-  </article>
-  
-  
-</div>
-            </aside>
-          </div>
-        </div>
-      </div>
-    </div>
-     
-    <footer class="footer">
-  <div class="footer-container">
-    <div>
-      <div class="footer-dsc">
-        <span>
-          Copyright ©
-          
-            2020
-          
-          
-                - 
-                2024
-          
-        </span>
-        &nbsp;
-        <a 
-          href="/" 
-          class="footer-link">
-          AuroBreeze
-        </a>
-      </div>
-    </div>
-
-    
-      <div class="footer-dsc">
-        
-          Powered by
-          <a 
-            href="https://hexo.io/" 
-            class="footer-link" 
-            target="_blank" 
-            rel="nofollow noopener noreferrer">
-            &nbsp;Hexo
-          </a>
-        
-        
-          <span>&nbsp;|&nbsp;</span>
-        
-        
-          Theme -
-          <a 
-            href="https://github.com/theme-kaze" 
-            class="footer-link" 
-            target="_blank"
-            rel="nofollow noopener noreferrer">
-            &nbsp;Kaze
-          </a>
-        
-      </div>
-    
-    
-    
-    
-</footer>
- 
-    
-  <a 
-    role="button" 
-    id="scrollbutton" 
-    class="basebutton" 
-    aria-label="回到顶部">
-    <i class="iconfont icon-arrowleft button-icon"></i>
-  </a>
-
-<a 
-  role="button" 
-  id="menubutton"
-  aria-label="menu button"
-  class="basebutton">
-  <i class="iconfont icon-menu button-icon"></i>
-</a>
-<a 
-  role="button" 
-  id="popbutton" 
-  class="basebutton" 
-  aria-label="控制中心">
-  <i class="iconfont icon-expand button-icon"></i>
-</a>
-<a 
-  role="button" 
-  id="darkbutton" 
-  class="basebutton darkwidget" 
-  aria-label="夜色模式">
-  <i class="iconfont icon-weather button-icon"></i>
-</a>
-<a 
-  role="button" 
-  id="searchbutton" 
-  class="basebutton searchwidget" 
-  aria-label="搜索">
-  <i class="iconfont icon-search button-icon"></i>
-</a> 
-     
-     
-     
-      <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img')
-    var i
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a')
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
-      wrapper.setAttribute('aria-label', 'illustration')
-      wrapper.style.cssText =
-        'width: 100%; display: flex; justify-content: center;'
-      if (img[i].alt) wrapper.dataset.caption = img[i].alt
-      wrapper.dataset.nolink = true
-      img[i].before(wrapper)
-      wrapper.append(img[i])
-      var divWrap = document.createElement('div')
-      divWrap.classList.add('gallery')
-      wrapper.before(divWrap)
-      divWrap.append(wrapper)
-    }
-    baguetteBox.run('.gallery')
-  }
-</script>
-<script>
-  loadScript(
-    "/js/lib/lightbox/baguetteBox.min.js",
-    addImgLayout
-  )
-</script>
- 
-     
-     
-    <script src="/js/main.js"></script> 
-     
-    
-      <script>
-        var addLazyload = function () {
-          var observer = lozad('.lozad', {
-            load: function (el) {
-              el.srcset = el.getAttribute('data-src')
-            },
-            loaded: function (el) {
-              el.classList.add('loaded')
-            },
-          })
-          observer.observe()
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'ximenxiaoxue/new_blog_comment',
+                'data-repo-id': 'R_kgDOMiDymw# Github repository id',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMiDym84Chisb',
+                'data-mapping': 'title',
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'not-lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
         }
-      </script>
-      <script>
-        loadScript('/js/lib/lozad.min.js', addLazyload)
-      </script>
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
     
-    <script src="//instant.page/5.1.0" type="module"
-      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+</div>
+
+            </div>
+        
+    </div>
+
     
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">python爬虫系列-JS逆向网易云评论</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E4%BB%A3%E7%A0%81"><span class="nav-text">python代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-%E5%88%86%E6%9E%90"><span class="nav-text">代码:分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-JS%E9%80%86%E5%90%91%E5%88%86%E6%9E%90"><span class="nav-text">代码:JS逆向分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-text">代码:加密过程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-python%E5%AE%9E%E7%8E%B0%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="nav-text">代码:python实现解密过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%84%9F%E8%A7%89%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%B8%8D%E9%94%99%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B4%A2%E5%8A%9B%E5%85%85%E8%B6%B3%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%88%B1%E5%8F%91%E7%94%B5%E6%94%AF%E6%8C%81%E4%B8%80%E4%B8%8B%E4%BD%9C%E8%80%85%EF%BC%8C%E6%84%9F%E8%B0%A2%E6%94%AF%E6%8C%81%EF%BC%81"><span class="nav-text">如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</span></a>
+
+    </div>
+</div>
+        </div>
     
-      <script>
-        setTimeout(() => {localSearch("search.json")}, 0)
-      </script>
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">西门啸雪</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共 7 篇文章
+                    </span>
+                    
+                        <span>
+                            共 21.7k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
     
-  </body>
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
 </html>
