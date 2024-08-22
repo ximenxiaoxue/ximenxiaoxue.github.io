@@ -850,6 +850,172 @@
       </tags>
   </entry>
   <entry>
+    <title>python爬虫系列:beautifulsoup爬虫与线程池</title>
+    <url>/2024/06/21/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-beautifulsoup%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章，也是对CSDN文章的修改，使用beautifulsoup爬取网页，并使用线程池提高爬取速度。</p>
+<h2 id="Python代码"><a href="#Python代码" class="headerlink" title="Python代码"></a>Python代码</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor <span class="comment">#导入线程池，加速爬取</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;webspider_book&quot;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&quot;webspider_book&quot;</span>)</span><br><span class="line"></span><br><span class="line">url =<span class="string">&quot; https://www.bigee.cc/book/78647/&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_url</span>(<span class="params">url</span>):<span class="comment">#要用两次直接写个函数算了</span></span><br><span class="line">    res = requests.get(url,headers=headers)</span><br><span class="line">    soup = BeautifulSoup(res.text,<span class="string">&quot;lxml&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> soup</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_max_page</span>(<span class="params">url</span>): <span class="comment">#获取下载的最大页数</span></span><br><span class="line">    <span class="built_in">list</span> = get_url(url).select(<span class="string">&quot;body &gt; div.listmain &gt; dl &gt; dd a&quot;</span>)</span><br><span class="line"></span><br><span class="line">    page_finall = re.findall(<span class="string">r&quot;/book/78647/(.*).html&quot;</span>, <span class="built_in">str</span>(<span class="built_in">list</span>[-<span class="number">1</span>][<span class="string">&#x27;href&#x27;</span>]))[<span class="number">0</span>] <span class="comment">#正则匹配最后一个章节的页码</span></span><br><span class="line">    <span class="comment">#print(page_finall)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> page_finall <span class="comment">#返回最大页数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_book_content</span>(<span class="params">url</span>):<span class="comment">#下载单个页面的函数</span></span><br><span class="line"></span><br><span class="line">    soup = get_url(url)</span><br><span class="line">    name = soup.select(<span class="string">&quot;#read &gt; div.book.reader &gt; div.content &gt; h1&quot;</span>)[<span class="number">0</span>].get_text()</span><br><span class="line">    <span class="comment">#print(name)</span></span><br><span class="line">    content = soup.select(<span class="string">&quot;#chaptercontent&quot;</span>) <span class="comment">#获取章节内容</span></span><br><span class="line">    content = <span class="built_in">str</span>(content[<span class="number">0</span>].get_text()) <span class="comment">#获取章节内容</span></span><br><span class="line">    <span class="comment">#print(content)</span></span><br><span class="line"></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">f&quot;webspider_book/<span class="subst">&#123;name&#125;</span>.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    f.write(content)<span class="comment">#写入文件</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;name&#125;</span>下载完成----------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(get_max_page(url=url))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;共<span class="subst">&#123;num&#125;</span>页----------&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">100</span>) <span class="keyword">as</span> t: <span class="comment">#线程池大小为100</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,num+<span class="number">1</span>):</span><br><span class="line">            t.submit(get_book_content,<span class="string">f&quot;https://www.bigee.cc/book/78647/<span class="subst">&#123;i&#125;</span>.html&quot;</span>) <span class="comment">#提交任务</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;线程池执行完毕&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><hr>
+<p>我们需要下载的是<code>requests</code>和<code>beautifulsoup4</code>库，如果没有安装，请使用以下命令安装,<code>lxml</code>也需要下载。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">pip install beautifulsoup4</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">pip install lxml</span><br></pre></td></tr></table></figure></div>
+
+<hr>
+<p>对于线程池，我们需要导入<code>concurrent.futures</code>库，并创建一个<code>ThreadPoolExecutor</code>对象，这个就不需要下载了，这是自带的，对于<code>concurren.futures</code>的使用，我们这里只讲解一下<code>ThreadPoolExecutor</code>的使用，其他的内容大家自行探索。</p>
+<hr>
+<h3 id="代码-分析"><a href="#代码-分析" class="headerlink" title="代码:分析"></a>代码:分析</h3><p><strong>思路分析</strong></p>
+<p>这次我们的目标是爬取目标网站的小说，下载下来并用线程池加速下载,目标网址为：</p>
+<p><a class="link"   href="https://www.bigee.cc/book/78647/" >https://www.bigee.cc/book/78647/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>好了，想要爬去内容，我们需要先分析网站的结构，去看看我们要爬取的内容在哪里。</p>
+<blockquote>
+<p>按 <strong>F12</strong> 进入开发者工具</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-03-30.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-10-46.png"
+                     
+                ></p>
+<p>这样我们就可以看到了小说的地址到底是不是，我们可以进去看一看。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-12-54.png"
+                     
+                ></p>
+<p>我们也知道，我们看到的是相对的位置，然后我们在小说内容的部分看到了他的地址</p>
+<blockquote>
+<p><a class="link"   href="https://www.bigee.cc/book/78647/1.html" >https://www.bigee.cc/book/78647/1.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+<p>我们看到的相对位置</p>
+<blockquote>
+<p>&#x2F;book&#x2F;78647&#x2F;1.html</p>
+</blockquote>
+<p>我们这样就察觉到他们之间不就只差了一个<code>https://www.bigee.cc</code>吗？到时候我们只需要拼接一下，就可以拿到我们想要的页面的url了。</p>
+<p>我们再看其他章节的地址，我们可以看到，他们的地址都是类似的，只是最后的数字不同。</p>
+<blockquote>
+<p><a class="link"   href="https://www.bigee.cc/book/78647/2.html" >https://www.bigee.cc/book/78647/2.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+<blockquote>
+<p><a class="link"   href="https://www.bigee.cc/book/78647/3.html" >https://www.bigee.cc/book/78647/3.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-16-45.png"
+                     
+                ></p>
+</blockquote>
+<p>所以如果我们想要下载所有的章节，我们只需要遍历所有的数字，然后拼接一下就可以了。</p>
+<p>那我们就需要先获取到这个最大的页码，然后遍历所有的数字，再在页面中下载内容就可以了。</p>
+<h3 id="代码-获取最大页码"><a href="#代码-获取最大页码" class="headerlink" title="代码:获取最大页码"></a>代码:获取最大页码</h3><p>那我们现在要做的就是获取最大的页码，我们可以用<code>requests</code>和<code>beautifulsoup4</code>来获取。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url =<span class="string">&quot; https://www.bigee.cc/book/78647/&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125; <span class="comment">#设置请求头,模拟浏览器</span></span><br><span class="line"></span><br><span class="line">res = requests.get(url,headers=headers).text<span class="comment">#获取网页内容</span></span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(res,<span class="string">&quot;lxml&quot;</span>)<span class="comment">#解析网页内容,加载lxml解析器</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">list</span> = soup.select(<span class="string">&quot;body &gt; div.listmain &gt; dl &gt; dd a&quot;</span>)</span><br><span class="line"></span><br><span class="line">page_finall = re.findall(<span class="string">r&quot;/book/78647/(.*).html&quot;</span>,<span class="built_in">list</span>[-<span class="number">1</span>][<span class="string">&#x27;href&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(page_finall)</span><br></pre></td></tr></table></figure></div>
+
+<p>这里我们使用<code>beautifulsoup</code>的<code>select</code>来获取到所有的章节的链接，也就是拿到所以我们匹配的<code>a</code>标签，这会生成一个列表。</p>
+<p>对于BS4怎么去选择这个标签，我们也可以直接去浏览器进行复制，具体BS4的选择方法，大家可以自行探索。</p>
+<p>下面是复制的步骤</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-29-22.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-29-57.png"
+                     
+                ></p>
+<p>但是我们复制的结果是：<code>body &gt; div.listmain &gt; dl &gt; dd:nth-child(2) &gt; a</code></p>
+<p>因为我们要拿到最后一个章节的链接，而这个选择只能让我们拿到第一个章节的url，所以我们需要改一下，改为：<code>body &gt; div.listmain &gt; dl &gt; dd a</code></p>
+<p>我们就能拿到这样的信息了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-33-03.png"
+                     
+                ></p>
+<p>这是一个列表，最后的章节在列表的最后一个，我们可以用<code>list[-1]</code>来获取到最后一个章节的链接。</p>
+<p>我们通过<code>list[-1][&#39;href&#39;]</code>来获取到最后一个章节的链接,这是bs4的一种方法。</p>
+<p>接下来我们用正则表达式来匹配这个链接，正则表达式的匹配规则是：<code>r&quot;/book/78647/(.*).html&quot;</code></p>
+<blockquote>
+<p>其中<code>（.*）</code>的意思是匹配任意字符，当然必须在<code>/book/78647/</code>和<code>.html</code>之间。</p>
+</blockquote>
+<p>对于正则的使用可以来这里学习：<a class="link"   href="https://deerchao.cn/tutorials/regex/regex.htm" >https://deerchao.cn/tutorials/regex/regex.htm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>这样最后我们就拿到了最大的页码了，也就是313</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-43-03.png"
+                     
+                ></p>
+<hr>
+<blockquote>
+<p><strong>在这个网站中还有点小问题他隐藏了一部分章节的url在另一个代码块中，大家可以去看看</strong></p>
+</blockquote>
+<hr>
+<h3 id="代码-下载"><a href="#代码-下载" class="headerlink" title="代码:下载"></a>代码:下载</h3><p>我们现在需要先写一个代码把第一页的内容都下载下来，其他的页面，除了url不一样以外其他的相同。</p>
+<p>我们先进入第一页，F12进入开发者工具，分析一下。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-47-29.png"
+                     
+                ></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;book&quot;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&quot;book&quot;</span>)</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://www.bigee.cc/book/78647/1.html&quot;</span></span><br><span class="line">res = requests.get(url,headers=headers).text</span><br><span class="line">soup = BeautifulSoup(res,<span class="string">&quot;lxml&quot;</span>)</span><br><span class="line"></span><br><span class="line">name = soup.select(<span class="string">&quot;#read &gt; div.book.reader &gt; div.content &gt; h1&quot;</span>)[<span class="number">0</span>].get_text() <span class="comment">#获取小说名</span></span><br><span class="line"><span class="comment">#print(name)</span></span><br><span class="line"></span><br><span class="line">content = soup.select(<span class="string">&quot;#chaptercontent&quot;</span>)<span class="comment">#获取章节内容</span></span><br><span class="line">content = <span class="built_in">str</span>(content[<span class="number">0</span>].get_text())<span class="comment">#获取章节内容</span></span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">f&quot;webspider_book/<span class="subst">&#123;name&#125;</span>.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">f.write(content)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p><code>bs4</code>中获取标签内容的方法，是使用<code>get_text()</code> 方法，我们可以直接获取到章节的内容，但是我们用的<code>select</code>方法，返回的是一个列表，我们就需要拿到列表中的内容，当然，列表中也就只有这一个元素。因为我们选择器选择的<code>#chaptercontent</code>标签（浏览器复制的地址就是这个），所以我们直接用<code>content[0]</code>就能拿到章节的标签，然后用<code>get_text()</code>方法来获取到章节的内容。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_18-04-12.png"
+                     
+                ></p>
+<p>小说名同理，直接去网页上用浏览器直接复制地址就可以了。</p>
+<p>然后我们把章节的内容写入文件，文件名就是小说名，我们用<code>f = open(f&quot;webspider_book/&#123;name&#125;.txt&quot;,&quot;w&quot;,encoding=&quot;utf-8&quot;)</code>来创建文件，然后用<code>f.write(content)</code>来写入内容。</p>
+<p>这样我们就下载了第一页的内容。</p>
+<hr>
+<h3 id="代码-优化实现"><a href="#代码-优化实现" class="headerlink" title="代码:优化实现"></a>代码:优化实现</h3><p>我们现在已经有了下载单个页面的函数，我们可以用线程池来加速下载，我们可以用<code>ThreadPoolExecutor</code>来创建线程池，然后用<code>submit()</code>方法来提交任务。</p>
+<p>简单来说，我们不需要用循环来慢慢下载网页内容了，我们直接用线程池来下载，线程池创建本来就需要循环，我们把有规律的url遍历提交给线程池。</p>
+<p>正常放前面不经常用和经常用但不需要改动的数据</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor <span class="comment">#导入线程池，加速爬取</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;webspider_book&quot;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&quot;webspider_book&quot;</span>)</span><br><span class="line"></span><br><span class="line">url =<span class="string">&quot; https://www.bigee.cc/book/78647/&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>在前面的讲述中</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">res = requests.get(url,headers=headers)</span><br><span class="line">soup = BeautifulSoup(res.text,<span class="string">&quot;lxml&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>用到了两次，所以就干脆写了个函数，这样就不用重复写了，让代码看起来干净些。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_url</span>(<span class="params">url</span>):<span class="comment">#要用两次直接写个函数算了</span></span><br><span class="line">    res = requests.get(url,headers=headers)</span><br><span class="line">    soup = BeautifulSoup(res.text,<span class="string">&quot;lxml&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> soup</span><br></pre></td></tr></table></figure></div>
+
+<p>因为我们需要实例化，所以这个函数就得把实例化的对象<code>soup</code>返回，这样才可以使用。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_max_page</span>(<span class="params">url</span>): <span class="comment">#获取下载的最大页数</span></span><br><span class="line">    <span class="built_in">list</span> = get_url(url).select(<span class="string">&quot;body &gt; div.listmain &gt; dl &gt; dd a&quot;</span>)</span><br><span class="line"></span><br><span class="line">    page_finall = re.findall(<span class="string">r&quot;/book/78647/(.*).html&quot;</span>, <span class="built_in">str</span>(<span class="built_in">list</span>[-<span class="number">1</span>][<span class="string">&#x27;href&#x27;</span>]))[<span class="number">0</span>] <span class="comment">#正则匹配最后一个章节的页码</span></span><br><span class="line">    <span class="comment">#print(page_finall)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> page_finall <span class="comment">#返回最大页数</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>这个函数就是获取最大的页码,但是他也需要先实例化<code>soup</code>对象，所以我们就把<code>get_url()</code>函数也写进来，让他实例化并返回<code>soup</code>对象，最后正则获取到最后一个章节的url。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_book_content</span>(<span class="params">url</span>):<span class="comment">#下载单个页面的函数</span></span><br><span class="line"></span><br><span class="line">    soup = get_url(url)</span><br><span class="line">    name = soup.select(<span class="string">&quot;#read &gt; div.book.reader &gt; div.content &gt; h1&quot;</span>)[<span class="number">0</span>].get_text()</span><br><span class="line">    <span class="comment">#print(name)</span></span><br><span class="line">    content = soup.select(<span class="string">&quot;#chaptercontent&quot;</span>) <span class="comment">#获取章节内容</span></span><br><span class="line">    content = <span class="built_in">str</span>(content[<span class="number">0</span>].get_text()) <span class="comment">#获取章节内容</span></span><br><span class="line">    <span class="comment">#print(content)</span></span><br><span class="line"></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">f&quot;webspider_book/<span class="subst">&#123;name&#125;</span>.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    f.write(content)<span class="comment">#写入文件</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;name&#125;</span>下载完成----------&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>这个函数是下载对应页面的内容，他也需要先实例化<code>soup</code>对象，所以我们继续用我们刚开始写的<code>get_url()</code>函数来实例化，然后用<code>select()</code>方法来获取到小说名，然后用<code>get_text()</code>方法来获取到小说名和章节内容。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(get_max_page(url=url))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;共<span class="subst">&#123;num&#125;</span>页----------&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">100</span>) <span class="keyword">as</span> t: <span class="comment">#线程池大小为100</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,num+<span class="number">1</span>):</span><br><span class="line">            t.submit(get_book_content,<span class="string">f&quot;https://www.bigee.cc/book/78647/<span class="subst">&#123;i&#125;</span>.html&quot;</span>) <span class="comment">#提交任务</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;线程池执行完毕&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>在这里我们先运行<code>get_max_page()</code>函数来获取最大的页码，url我们在上面已经先声明了，然后我们用<code>ThreadPoolExecutor</code>来创建线程池，线程池大小为100 **(可以自己调整)**，然后用<code>for</code>循环来遍历所有的页码，然后用<code>submit()</code>方法来提交任务，任务就是<code>get_book_content()</code>函数，我们把页码和url拼接起来，然后提交给线程池,这样我们就能很快的把小说爬完了。</p>
+<hr>
+<h1 id="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"><a href="#如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！" class="headerlink" title="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"></a>如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</h1><blockquote>
+<p>爱发电地址:<a class="link"   href="https://afdian.com/a/AuroraBreeze" >https://afdian.com/a/AuroraBreeze <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pywifi破解WiFi密码示例</title>
     <url>/2024/07/08/pywifi%E7%A0%B4%E8%A7%A3WiFi%E5%AF%86%E7%A0%81%E7%A4%BA%E4%BE%8B/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文章代码仅供参考，个人学习使用，请勿用于非法用途。</p>
@@ -1181,172 +1347,6 @@
       </categories>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python爬虫系列:beautifulsoup爬虫与线程池</title>
-    <url>/2024/06/21/python%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97-beautifulsoup%E7%88%AC%E8%99%AB%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章，也是对CSDN文章的修改，使用beautifulsoup爬取网页，并使用线程池提高爬取速度。</p>
-<h2 id="Python代码"><a href="#Python代码" class="headerlink" title="Python代码"></a>Python代码</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor <span class="comment">#导入线程池，加速爬取</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;webspider_book&quot;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&quot;webspider_book&quot;</span>)</span><br><span class="line"></span><br><span class="line">url =<span class="string">&quot; https://www.bigee.cc/book/78647/&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_url</span>(<span class="params">url</span>):<span class="comment">#要用两次直接写个函数算了</span></span><br><span class="line">    res = requests.get(url,headers=headers)</span><br><span class="line">    soup = BeautifulSoup(res.text,<span class="string">&quot;lxml&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> soup</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_max_page</span>(<span class="params">url</span>): <span class="comment">#获取下载的最大页数</span></span><br><span class="line">    <span class="built_in">list</span> = get_url(url).select(<span class="string">&quot;body &gt; div.listmain &gt; dl &gt; dd a&quot;</span>)</span><br><span class="line"></span><br><span class="line">    page_finall = re.findall(<span class="string">r&quot;/book/78647/(.*).html&quot;</span>, <span class="built_in">str</span>(<span class="built_in">list</span>[-<span class="number">1</span>][<span class="string">&#x27;href&#x27;</span>]))[<span class="number">0</span>] <span class="comment">#正则匹配最后一个章节的页码</span></span><br><span class="line">    <span class="comment">#print(page_finall)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> page_finall <span class="comment">#返回最大页数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_book_content</span>(<span class="params">url</span>):<span class="comment">#下载单个页面的函数</span></span><br><span class="line"></span><br><span class="line">    soup = get_url(url)</span><br><span class="line">    name = soup.select(<span class="string">&quot;#read &gt; div.book.reader &gt; div.content &gt; h1&quot;</span>)[<span class="number">0</span>].get_text()</span><br><span class="line">    <span class="comment">#print(name)</span></span><br><span class="line">    content = soup.select(<span class="string">&quot;#chaptercontent&quot;</span>) <span class="comment">#获取章节内容</span></span><br><span class="line">    content = <span class="built_in">str</span>(content[<span class="number">0</span>].get_text()) <span class="comment">#获取章节内容</span></span><br><span class="line">    <span class="comment">#print(content)</span></span><br><span class="line"></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">f&quot;webspider_book/<span class="subst">&#123;name&#125;</span>.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    f.write(content)<span class="comment">#写入文件</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;name&#125;</span>下载完成----------&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(get_max_page(url=url))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;共<span class="subst">&#123;num&#125;</span>页----------&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">100</span>) <span class="keyword">as</span> t: <span class="comment">#线程池大小为100</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,num+<span class="number">1</span>):</span><br><span class="line">            t.submit(get_book_content,<span class="string">f&quot;https://www.bigee.cc/book/78647/<span class="subst">&#123;i&#125;</span>.html&quot;</span>) <span class="comment">#提交任务</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;线程池执行完毕&quot;</span>)</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><hr>
-<p>我们需要下载的是<code>requests</code>和<code>beautifulsoup4</code>库，如果没有安装，请使用以下命令安装,<code>lxml</code>也需要下载。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure></div>
-
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">pip install beautifulsoup4</span><br></pre></td></tr></table></figure></div>
-
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">pip install lxml</span><br></pre></td></tr></table></figure></div>
-
-<hr>
-<p>对于线程池，我们需要导入<code>concurrent.futures</code>库，并创建一个<code>ThreadPoolExecutor</code>对象，这个就不需要下载了，这是自带的，对于<code>concurren.futures</code>的使用，我们这里只讲解一下<code>ThreadPoolExecutor</code>的使用，其他的内容大家自行探索。</p>
-<hr>
-<h3 id="代码-分析"><a href="#代码-分析" class="headerlink" title="代码:分析"></a>代码:分析</h3><p><strong>思路分析</strong></p>
-<p>这次我们的目标是爬取目标网站的小说，下载下来并用线程池加速下载,目标网址为：</p>
-<p><a class="link"   href="https://www.bigee.cc/book/78647/" >https://www.bigee.cc/book/78647/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>好了，想要爬去内容，我们需要先分析网站的结构，去看看我们要爬取的内容在哪里。</p>
-<blockquote>
-<p>按 <strong>F12</strong> 进入开发者工具</p>
-</blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-03-30.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-10-46.png"
-                     
-                ></p>
-<p>这样我们就可以看到了小说的地址到底是不是，我们可以进去看一看。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-12-54.png"
-                     
-                ></p>
-<p>我们也知道，我们看到的是相对的位置，然后我们在小说内容的部分看到了他的地址</p>
-<blockquote>
-<p><a class="link"   href="https://www.bigee.cc/book/78647/1.html" >https://www.bigee.cc/book/78647/1.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</blockquote>
-<p>我们看到的相对位置</p>
-<blockquote>
-<p>&#x2F;book&#x2F;78647&#x2F;1.html</p>
-</blockquote>
-<p>我们这样就察觉到他们之间不就只差了一个<code>https://www.bigee.cc</code>吗？到时候我们只需要拼接一下，就可以拿到我们想要的页面的url了。</p>
-<p>我们再看其他章节的地址，我们可以看到，他们的地址都是类似的，只是最后的数字不同。</p>
-<blockquote>
-<p><a class="link"   href="https://www.bigee.cc/book/78647/2.html" >https://www.bigee.cc/book/78647/2.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</blockquote>
-<blockquote>
-<p><a class="link"   href="https://www.bigee.cc/book/78647/3.html" >https://www.bigee.cc/book/78647/3.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-16-45.png"
-                     
-                ></p>
-</blockquote>
-<p>所以如果我们想要下载所有的章节，我们只需要遍历所有的数字，然后拼接一下就可以了。</p>
-<p>那我们就需要先获取到这个最大的页码，然后遍历所有的数字，再在页面中下载内容就可以了。</p>
-<h3 id="代码-获取最大页码"><a href="#代码-获取最大页码" class="headerlink" title="代码:获取最大页码"></a>代码:获取最大页码</h3><p>那我们现在要做的就是获取最大的页码，我们可以用<code>requests</code>和<code>beautifulsoup4</code>来获取。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url =<span class="string">&quot; https://www.bigee.cc/book/78647/&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125; <span class="comment">#设置请求头,模拟浏览器</span></span><br><span class="line"></span><br><span class="line">res = requests.get(url,headers=headers).text<span class="comment">#获取网页内容</span></span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(res,<span class="string">&quot;lxml&quot;</span>)<span class="comment">#解析网页内容,加载lxml解析器</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">list</span> = soup.select(<span class="string">&quot;body &gt; div.listmain &gt; dl &gt; dd a&quot;</span>)</span><br><span class="line"></span><br><span class="line">page_finall = re.findall(<span class="string">r&quot;/book/78647/(.*).html&quot;</span>,<span class="built_in">list</span>[-<span class="number">1</span>][<span class="string">&#x27;href&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(page_finall)</span><br></pre></td></tr></table></figure></div>
-
-<p>这里我们使用<code>beautifulsoup</code>的<code>select</code>来获取到所有的章节的链接，也就是拿到所以我们匹配的<code>a</code>标签，这会生成一个列表。</p>
-<p>对于BS4怎么去选择这个标签，我们也可以直接去浏览器进行复制，具体BS4的选择方法，大家可以自行探索。</p>
-<p>下面是复制的步骤</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-29-22.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-29-57.png"
-                     
-                ></p>
-<p>但是我们复制的结果是：<code>body &gt; div.listmain &gt; dl &gt; dd:nth-child(2) &gt; a</code></p>
-<p>因为我们要拿到最后一个章节的链接，而这个选择只能让我们拿到第一个章节的url，所以我们需要改一下，改为：<code>body &gt; div.listmain &gt; dl &gt; dd a</code></p>
-<p>我们就能拿到这样的信息了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-33-03.png"
-                     
-                ></p>
-<p>这是一个列表，最后的章节在列表的最后一个，我们可以用<code>list[-1]</code>来获取到最后一个章节的链接。</p>
-<p>我们通过<code>list[-1][&#39;href&#39;]</code>来获取到最后一个章节的链接,这是bs4的一种方法。</p>
-<p>接下来我们用正则表达式来匹配这个链接，正则表达式的匹配规则是：<code>r&quot;/book/78647/(.*).html&quot;</code></p>
-<blockquote>
-<p>其中<code>（.*）</code>的意思是匹配任意字符，当然必须在<code>/book/78647/</code>和<code>.html</code>之间。</p>
-</blockquote>
-<p>对于正则的使用可以来这里学习：<a class="link"   href="https://deerchao.cn/tutorials/regex/regex.htm" >https://deerchao.cn/tutorials/regex/regex.htm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>这样最后我们就拿到了最大的页码了，也就是313</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-43-03.png"
-                     
-                ></p>
-<hr>
-<blockquote>
-<p><strong>在这个网站中还有点小问题他隐藏了一部分章节的url在另一个代码块中，大家可以去看看</strong></p>
-</blockquote>
-<hr>
-<h3 id="代码-下载"><a href="#代码-下载" class="headerlink" title="代码:下载"></a>代码:下载</h3><p>我们现在需要先写一个代码把第一页的内容都下载下来，其他的页面，除了url不一样以外其他的相同。</p>
-<p>我们先进入第一页，F12进入开发者工具，分析一下。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_17-47-29.png"
-                     
-                ></p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;book&quot;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&quot;book&quot;</span>)</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://www.bigee.cc/book/78647/1.html&quot;</span></span><br><span class="line">res = requests.get(url,headers=headers).text</span><br><span class="line">soup = BeautifulSoup(res,<span class="string">&quot;lxml&quot;</span>)</span><br><span class="line"></span><br><span class="line">name = soup.select(<span class="string">&quot;#read &gt; div.book.reader &gt; div.content &gt; h1&quot;</span>)[<span class="number">0</span>].get_text() <span class="comment">#获取小说名</span></span><br><span class="line"><span class="comment">#print(name)</span></span><br><span class="line"></span><br><span class="line">content = soup.select(<span class="string">&quot;#chaptercontent&quot;</span>)<span class="comment">#获取章节内容</span></span><br><span class="line">content = <span class="built_in">str</span>(content[<span class="number">0</span>].get_text())<span class="comment">#获取章节内容</span></span><br><span class="line"><span class="built_in">print</span>(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">f&quot;webspider_book/<span class="subst">&#123;name&#125;</span>.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">f.write(content)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<p><code>bs4</code>中获取标签内容的方法，是使用<code>get_text()</code> 方法，我们可以直接获取到章节的内容，但是我们用的<code>select</code>方法，返回的是一个列表，我们就需要拿到列表中的内容，当然，列表中也就只有这一个元素。因为我们选择器选择的<code>#chaptercontent</code>标签（浏览器复制的地址就是这个），所以我们直接用<code>content[0]</code>就能拿到章节的标签，然后用<code>get_text()</code>方法来获取到章节的内容。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../blog_img/py_bs4_2/Snipaste_2024-06-21_18-04-12.png"
-                     
-                ></p>
-<p>小说名同理，直接去网页上用浏览器直接复制地址就可以了。</p>
-<p>然后我们把章节的内容写入文件，文件名就是小说名，我们用<code>f = open(f&quot;webspider_book/&#123;name&#125;.txt&quot;,&quot;w&quot;,encoding=&quot;utf-8&quot;)</code>来创建文件，然后用<code>f.write(content)</code>来写入内容。</p>
-<p>这样我们就下载了第一页的内容。</p>
-<hr>
-<h3 id="代码-优化实现"><a href="#代码-优化实现" class="headerlink" title="代码:优化实现"></a>代码:优化实现</h3><p>我们现在已经有了下载单个页面的函数，我们可以用线程池来加速下载，我们可以用<code>ThreadPoolExecutor</code>来创建线程池，然后用<code>submit()</code>方法来提交任务。</p>
-<p>简单来说，我们不需要用循环来慢慢下载网页内容了，我们直接用线程池来下载，线程池创建本来就需要循环，我们把有规律的url遍历提交给线程池。</p>
-<p>正常放前面不经常用和经常用但不需要改动的数据</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor <span class="comment">#导入线程池，加速爬取</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;webspider_book&quot;</span>):</span><br><span class="line">    os.mkdir(<span class="string">&quot;webspider_book&quot;</span>)</span><br><span class="line"></span><br><span class="line">url =<span class="string">&quot; https://www.bigee.cc/book/78647/&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<p>在前面的讲述中</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line">res = requests.get(url,headers=headers)</span><br><span class="line">soup = BeautifulSoup(res.text,<span class="string">&quot;lxml&quot;</span>)</span><br></pre></td></tr></table></figure></div>
-
-<p>用到了两次，所以就干脆写了个函数，这样就不用重复写了，让代码看起来干净些。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_url</span>(<span class="params">url</span>):<span class="comment">#要用两次直接写个函数算了</span></span><br><span class="line">    res = requests.get(url,headers=headers)</span><br><span class="line">    soup = BeautifulSoup(res.text,<span class="string">&quot;lxml&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> soup</span><br></pre></td></tr></table></figure></div>
-
-<p>因为我们需要实例化，所以这个函数就得把实例化的对象<code>soup</code>返回，这样才可以使用。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_max_page</span>(<span class="params">url</span>): <span class="comment">#获取下载的最大页数</span></span><br><span class="line">    <span class="built_in">list</span> = get_url(url).select(<span class="string">&quot;body &gt; div.listmain &gt; dl &gt; dd a&quot;</span>)</span><br><span class="line"></span><br><span class="line">    page_finall = re.findall(<span class="string">r&quot;/book/78647/(.*).html&quot;</span>, <span class="built_in">str</span>(<span class="built_in">list</span>[-<span class="number">1</span>][<span class="string">&#x27;href&#x27;</span>]))[<span class="number">0</span>] <span class="comment">#正则匹配最后一个章节的页码</span></span><br><span class="line">    <span class="comment">#print(page_finall)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> page_finall <span class="comment">#返回最大页数</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<p>这个函数就是获取最大的页码,但是他也需要先实例化<code>soup</code>对象，所以我们就把<code>get_url()</code>函数也写进来，让他实例化并返回<code>soup</code>对象，最后正则获取到最后一个章节的url。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_book_content</span>(<span class="params">url</span>):<span class="comment">#下载单个页面的函数</span></span><br><span class="line"></span><br><span class="line">    soup = get_url(url)</span><br><span class="line">    name = soup.select(<span class="string">&quot;#read &gt; div.book.reader &gt; div.content &gt; h1&quot;</span>)[<span class="number">0</span>].get_text()</span><br><span class="line">    <span class="comment">#print(name)</span></span><br><span class="line">    content = soup.select(<span class="string">&quot;#chaptercontent&quot;</span>) <span class="comment">#获取章节内容</span></span><br><span class="line">    content = <span class="built_in">str</span>(content[<span class="number">0</span>].get_text()) <span class="comment">#获取章节内容</span></span><br><span class="line">    <span class="comment">#print(content)</span></span><br><span class="line"></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">f&quot;webspider_book/<span class="subst">&#123;name&#125;</span>.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    f.write(content)<span class="comment">#写入文件</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;name&#125;</span>下载完成----------&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<p>这个函数是下载对应页面的内容，他也需要先实例化<code>soup</code>对象，所以我们继续用我们刚开始写的<code>get_url()</code>函数来实例化，然后用<code>select()</code>方法来获取到小说名，然后用<code>get_text()</code>方法来获取到小说名和章节内容。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(get_max_page(url=url))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;共<span class="subst">&#123;num&#125;</span>页----------&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> ThreadPoolExecutor(<span class="number">100</span>) <span class="keyword">as</span> t: <span class="comment">#线程池大小为100</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,num+<span class="number">1</span>):</span><br><span class="line">            t.submit(get_book_content,<span class="string">f&quot;https://www.bigee.cc/book/78647/<span class="subst">&#123;i&#125;</span>.html&quot;</span>) <span class="comment">#提交任务</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;线程池执行完毕&quot;</span>)</span><br></pre></td></tr></table></figure></div>
-
-<p>在这里我们先运行<code>get_max_page()</code>函数来获取最大的页码，url我们在上面已经先声明了，然后我们用<code>ThreadPoolExecutor</code>来创建线程池，线程池大小为100 **(可以自己调整)**，然后用<code>for</code>循环来遍历所有的页码，然后用<code>submit()</code>方法来提交任务，任务就是<code>get_book_content()</code>函数，我们把页码和url拼接起来，然后提交给线程池,这样我们就能很快的把小说爬完了。</p>
-<hr>
-<h1 id="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"><a href="#如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！" class="headerlink" title="如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！"></a>如果你感觉这篇文章不错，而且财力充足的话，希望可以用爱发电支持一下作者，感谢支持！</h1><blockquote>
-<p>爱发电地址:<a class="link"   href="https://afdian.com/a/AuroraBreeze" >https://afdian.com/a/AuroraBreeze <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>爬虫</tag>
       </tags>
   </entry>
 </search>
